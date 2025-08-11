@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Building2, Award, Globe } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -65,12 +66,16 @@ const Hero: React.FC = () => {
               transition={{ delay: 0.7, duration: 0.6 }}
               className="flex gap-4"
             >
-              <button className="bg-[#2DD4BF] hover:bg-[#25B8A7] text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300">
-                {t('hero.viewProjects')}
-              </button>
-              <button className="border-2 border-[#2DD4BF] text-[#2DD4BF] hover:bg-[#2DD4BF] hover:text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300">
-                {t('hero.contactUs')}
-              </button>
+              <Link href="/projects">
+                <button className="bg-[#2DD4BF] hover:bg-[#25B8A7] text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300">
+                  {t('hero.viewProjects')}
+                </button>
+              </Link>
+              <Link href="/contact">
+                <button className="border-2 border-[#2DD4BF] text-[#2DD4BF] hover:bg-[#2DD4BF] hover:text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300">
+                  {t('hero.contactUs')}
+                </button>
+              </Link>
             </motion.div>
           </motion.div>
 
