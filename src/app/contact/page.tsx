@@ -1,8 +1,10 @@
 'use client';
 
 import { useState } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Contact() {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -40,10 +42,10 @@ export default function Contact() {
         {/* Hero Section */}
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-6xl font-bold text-neo-dark-gray mb-6 animate-fade-in-up">
-            Contact Us
+            {t('contact.title')}
           </h1>
           <p className="text-xl text-neo-gray max-w-3xl mx-auto animate-fade-in-up">
-            Get in touch with our team to discuss your project needs
+            {t('contact.subtitle')}
           </p>
         </div>
 
@@ -51,12 +53,12 @@ export default function Contact() {
         <div className="grid lg:grid-cols-2 gap-12 mb-16">
           {/* Contact Form */}
           <div className="bg-white rounded-lg shadow-lg p-8 animate-slide-in-left">
-            <h2 className="text-2xl font-bold text-neo-dark-gray mb-6">Send us a Message</h2>
+            <h2 className="text-2xl font-bold text-neo-dark-gray mb-6">{t('contact.form.title')}</h2>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-neo-dark-gray font-medium mb-2">
-                    Full Name *
+                    {t('contact.form.name')} *
                   </label>
                   <input
                     type="text"
@@ -71,7 +73,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-neo-dark-gray font-medium mb-2">
-                    Email Address *
+                    {t('contact.form.email')} *
                   </label>
                   <input
                     type="email"
@@ -89,7 +91,7 @@ export default function Contact() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="company" className="block text-neo-dark-gray font-medium mb-2">
-                    Company
+                    {t('contact.form.company')}
                   </label>
                   <input
                     type="text"
@@ -103,7 +105,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <label htmlFor="phone" className="block text-neo-dark-gray font-medium mb-2">
-                    Phone Number
+                    {t('contact.form.phone')}
                   </label>
                   <input
                     type="tel"
@@ -119,7 +121,7 @@ export default function Contact() {
 
               <div>
                 <label htmlFor="subject" className="block text-neo-dark-gray font-medium mb-2">
-                  Subject *
+                  {t('contact.form.subject')} *
                 </label>
                 <select
                   id="subject"
@@ -141,7 +143,7 @@ export default function Contact() {
 
               <div>
                 <label htmlFor="message" className="block text-neo-dark-gray font-medium mb-2">
-                  Message *
+                  {t('contact.form.message')} *
                 </label>
                 <textarea
                   id="message"
@@ -159,7 +161,7 @@ export default function Contact() {
                 type="submit"
                 className="w-full bg-neo-teal hover:bg-neo-dark-teal text-white px-6 py-3 rounded-lg font-semibold transition-colors"
               >
-                Send Message
+                {t('contact.form.submit')}
               </button>
             </form>
           </div>
@@ -168,90 +170,66 @@ export default function Contact() {
           <div className="space-y-8 animate-fade-in-up">
             {/* Main Office */}
             <div className="bg-white rounded-lg shadow-lg p-8">
-              <h3 className="text-xl font-bold text-neo-dark-gray mb-4">🏢 Main Office</h3>
+              <h3 className="text-xl font-bold text-neo-dark-gray mb-4">{t('contact.office.main')}</h3>
+              <div className="space-y-3 text-neo-gray">
+                <p><strong>{t('contact.office.address')}:</strong><br />
+                Rua dos Curtidores. No. 29 EDF. YU WAH GARDEN. GF Unit L<br />
+                Macau</p>
+                <p><strong>{t('contact.office.phone')}:</strong> +853 66887906</p>
+                <p><strong>{t('contact.office.email')}:</strong> neo@neogenesisenc.com</p>
+                <p><strong>{t('contact.office.hours')}:</strong><br />
+                {t('contact.office.weekdays')}<br />
+                {t('contact.office.saturday')}</p>
+              </div>
+            </div>
+
+            {/* China Office */}
+            <div className="bg-white rounded-lg shadow-lg p-8">
+              <h3 className="text-xl font-bold text-neo-dark-gray mb-4">China Office</h3>
               <div className="space-y-3 text-neo-gray">
                 <p><strong>Address:</strong><br />
-                Suite 1205, Neo Genesis Tower<br />
-                123 Engineering Boulevard<br />
-                Guangzhou, Guangdong 510000<br />
-                China</p>
-                <p><strong>Phone:</strong> +86 20 8888 9999</p>
-                <p><strong>Email:</strong> info@neogenesis.com</p>
-                <p><strong>Business Hours:</strong><br />
-                Monday - Friday: 8:00 AM - 6:00 PM CST<br />
-                Saturday: 9:00 AM - 1:00 PM CST</p>
+                Hengqin MCC Headquarters Complex Hr. 27 Room 04<br />
+                Hengqin Zhuhai, China</p>
+                <p><strong>Phone:</strong> +86 18516377303</p>
+                <p><strong>Timezone:</strong> GMT+8</p>
               </div>
             </div>
 
-            {/* Regional Offices */}
+            {/* US Office */}
             <div className="bg-white rounded-lg shadow-lg p-8">
-              <h3 className="text-xl font-bold text-neo-dark-gray mb-4">🌍 Regional Offices</h3>
-              <div className="space-y-4 text-neo-gray">
-                <div>
-                  <h4 className="font-semibold text-neo-dark-gray">🇲🇴 Macau SAR</h4>
-                  <p>Avenida da Praia Grande, 123<br />
-                  Macau SAR<br />
-                  +853 2888 9999</p>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-neo-dark-gray">🇭🇰 Hong Kong SAR</h4>
-                  <p>Central Plaza, 18th Floor<br />
-                  18 Harbour Road, Wan Chai<br />
-                  Hong Kong SAR<br />
-                  +852 2888 9999</p>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-neo-dark-gray">🇺🇸 United States</h4>
-                  <p>123 Innovation Drive<br />
-                  San Francisco, CA 94105<br />
-                  United States<br />
-                  +1 (415) 888-9999</p>
-                </div>
+              <h3 className="text-xl font-bold text-neo-dark-gray mb-4">US Office</h3>
+              <div className="space-y-3 text-neo-gray">
+                <p><strong>Address:</strong><br />
+                Beach Rd. Garapan Floor of the Yuyu Bldg.<br />
+                3rd Floor Room 103, Saipan<br />
+                Northern Mariana Islands (USA)</p>
+                <p><strong>Phone:</strong> +1 670 322 9568</p>
+                <p><strong>Timezone:</strong> GMT+10</p>
               </div>
             </div>
 
-            {/* Quick Contact */}
-            <div className="bg-neo-teal text-white rounded-lg p-8">
-              <h3 className="text-xl font-bold mb-4">🚀 Quick Response</h3>
-              <p className="mb-4">
-                Need immediate assistance? Our project managers are available 24/7 for urgent inquiries.
-              </p>
-              <p><strong>Emergency Hotline:</strong><br />
-              +86 138 0000 8888</p>
-              <p className="text-sm mt-2 opacity-90">
-                *For existing projects and emergency support only
-              </p>
-            </div>
           </div>
         </div>
 
         {/* Map and Additional Info */}
         <div className="bg-white rounded-lg shadow-lg p-8 text-center">
-          <h2 className="text-2xl font-bold text-neo-dark-gray mb-6">Visit Our Office</h2>
-          <div className="bg-neo-off-white rounded-lg p-8 mb-6">
-            <div className="text-6xl mb-4">🗺️</div>
-            <p className="text-neo-gray">
-              Interactive map integration would be implemented here.<br />
-              Our main office is conveniently located in the heart of Guangzhou&apos;s business district,<br />
-              easily accessible by metro and major highways.
+          <h2 className="text-2xl font-bold text-neo-dark-gray mb-6">{t('contact.visit.title')}</h2>
+          <div className="bg-neo-off-white rounded-lg p-8">
+            <div className="w-full h-96 bg-gray-200 rounded-lg overflow-hidden">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1845.123!2d113.5530!3d22.1987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f15.1!3m3!1m2!1s0x0%3A0x0!2sRua%20dos%20Curtidores%2C%20Macau!5e0!3m2!1sen!2smo!4v1709123456789!5m2!1sen!2smo"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Neo Genesis Office Location - Rua dos Curtidores, Macau"
+              ></iframe>
+            </div>
+            <p className="text-neo-gray mt-4">
+              {t('contact.visit.description')}
             </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-6 text-center">
-            <div>
-              <div className="text-2xl mb-2">🚇</div>
-              <h4 className="font-semibold text-neo-dark-gray">Metro Access</h4>
-              <p className="text-neo-gray text-sm">5-minute walk from Zhujiang New Town Station</p>
-            </div>
-            <div>
-              <div className="text-2xl mb-2">🅿️</div>
-              <h4 className="font-semibold text-neo-dark-gray">Parking</h4>
-              <p className="text-neo-gray text-sm">Underground parking available for visitors</p>
-            </div>
-            <div>
-              <div className="text-2xl mb-2">☕</div>
-              <h4 className="font-semibold text-neo-dark-gray">Meeting Facilities</h4>
-              <p className="text-neo-gray text-sm">Modern conference rooms and presentation areas</p>
-            </div>
           </div>
         </div>
       </div>

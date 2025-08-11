@@ -2,18 +2,38 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { Calendar, MapPin, ExternalLink, ChevronRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Calendar, MapPin, ExternalLink, ChevronRight, X, ChevronLeft, ChevronRight as ChevronRightIcon } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
+import ClientLogos from '@/components/ClientLogos';
+
+interface Project {
+  id: number;
+  title: string;
+  category: string;
+  location: string;
+  year: string;
+  type: string;
+  area: string;
+  description: string;
+  image: string;
+  images: string[];
+  services: string[];
+}
 
 export default function Projects() {
+  const { t } = useLanguage();
   const [activeCategory, setActiveCategory] = useState('all');
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const categories = [
-    { id: 'all', name: 'All Projects', count: 7 },
-    { id: 'casino', name: 'Casino & Resort', count: 3 },
-    { id: 'commercial', name: 'Commercial', count: 1 },
+    { id: 'all', name: t('projects.categories.all'), count: 24 },
+    { id: 'casino', name: t('projects.categories.casino'), count: 6 },
+    { id: 'commercial', name: t('projects.categories.commercial'), count: 4 },
+    { id: 'retail', name: 'Retail & A&A', count: 7 },
     { id: 'government', name: 'Government', count: 1 },
-    { id: 'aa', name: 'A&A Projects', count: 2 },
+    { id: 'entertainment', name: 'Entertainment', count: 6 },
   ];
 
   const projects = [
@@ -27,6 +47,7 @@ export default function Projects() {
       area: '220 sqm addition, 130 sqm modification',
       description: 'Major structural renovation including new escalator and stair installation, floor slab infill, and comprehensive building modifications.',
       image: '/images/projects/1.png',
+      images: ['/images/projects/1.png', '/images/projects/2.png', '/images/projects/3.png', '/images/projects/4.jpg', '/images/projects/5.jpg'],
       services: ['Structural Engineering', 'Construction Management', 'Building Permits']
     },
     {
@@ -39,6 +60,7 @@ export default function Projects() {
       area: 'Over 140,000 sqm with 14-story hotel tower',
       description: 'Luxury integrated resort with more than 340 rooms, 15 ultra-luxury villas, high-end dining and entertainment facilities.',
       image: '/images/projects/BS1.png',
+      images: ['/images/projects/BS1.png', '/images/projects/BS2.png', '/images/projects/BS3.png', '/images/projects/BS4.png', '/images/projects/BS5.png', '/images/projects/BS6.png', '/images/projects/BS7.png'],
       services: ['Structural Consultancy', 'Project Management', 'BIM Modeling']
     },
     {
@@ -51,55 +73,242 @@ export default function Projects() {
       area: 'Integrated resort complex',
       description: 'Luxury integrated resort featuring world-class gaming facilities, premium accommodations, and entertainment venues.',
       image: '/images/projects/WP1.jpg',
+      images: ['/images/projects/WP1.jpg', '/images/projects/WP2.jpg', '/images/projects/WP3.jpg', '/images/projects/WP4.png', '/images/projects/WP5.png', '/images/projects/WP6.png', '/images/projects/WP7.png'],
       services: ['Structural Engineering', 'BIM Coordination', 'Project Management']
     },
     {
       id: 4,
-      title: 'Macau Bank of China - San Ma Lou Sub-Branch',
-      category: 'commercial',
+      title: 'City of Dreams Façade Enhancement',
+      category: 'casino',
       location: 'Macau',
       year: '2020',
-      type: 'Bank Branch Remodeling',
-      area: 'Complete interior renovation',
-      description: 'Adding new mezzanine floor and new stairs, glass facade wall replacement, and comprehensive interior modifications.',
-      image: '/images/projects/2.png',
-      services: ['Structural Analysis', 'Interior Design Support', 'Regulatory Approval']
+      type: 'Façade Renovation & Enhancement',
+      area: 'Large-scale façade modification',
+      description: 'Comprehensive façade enhancement project including structural modifications, aesthetic improvements, and building envelope upgrades.',
+      image: '/images/projects/cod1.jpg',
+      images: ['/images/projects/cod1.jpg', '/images/projects/cod2.png', '/images/projects/cod3.png', '/images/projects/cod4.jpg', '/images/projects/cod5.png', '/images/projects/cod6.jpg'],
+      services: ['Façade Engineering', 'Structural Analysis', 'Project Management']
     },
     {
       id: 5,
-      title: 'New Immigration Building Design',
-      category: 'government',
-      location: 'Macau',
-      year: '2011',
-      type: 'Government Building Architecture',
-      area: 'Multi-story government facility',
-      description: 'Comprehensive design and planning for new immigration building including architectural optimization and space utilization.',
-      image: '/images/projects/3.png',
-      services: ['Architectural Design', 'Space Planning', 'Government Compliance']
-    },
-    {
-      id: 6,
-      title: 'Butani at the Grand Lisboa',
-      category: 'aa',
-      location: 'Macau',
-      year: '2021',
-      type: 'Luxury Retail Store Renovation',
-      area: 'High-end jewelry store fit-out',
-      description: 'Premium jewelry store renovation featuring sophisticated design elements and luxury retail space optimization.',
-      image: '/images/projects/4.jpg',
-      services: ['A&A Projects', 'Luxury Fit-out', 'MEP Coordination']
+      title: 'Hilton Saipan Garden Resort',
+      category: 'casino',
+      location: 'Saipan, Northern Mariana Islands',
+      year: '2017',
+      type: 'Resort Development & Construction',
+      area: 'Full resort complex with amenities',
+      description: 'Complete resort development including guest accommodations, recreational facilities, and landscape integration.',
+      image: '/images/projects/Hil1.png',
+      images: ['/images/projects/Hil1.png', '/images/projects/Hil2.png', '/images/projects/Hil3.png', '/images/projects/Hil4.png', '/images/projects/Hil5.png', '/images/projects/Hil6.jpg'],
+      services: ['Resort Planning', 'Structural Engineering', 'Project Management']
     },
     {
       id: 7,
-      title: 'Macau Parisian Tissot Retail Shop',
-      category: 'aa',
+      title: 'Saipan Beverly Hill Development',
+      category: 'commercial',
+      location: 'Saipan, Northern Mariana Islands',
+      year: '2018',
+      type: 'Mixed-Use Commercial Development',
+      area: 'Large-scale commercial complex',
+      description: 'Comprehensive commercial development featuring retail spaces, office areas, and mixed-use facilities.',
+      image: '/images/projects/bh1.png',
+      images: ['/images/projects/bh1.png', '/images/projects/bh2.png', '/images/projects/bh3.png', '/images/projects/bh4.png', '/images/projects/bh5.png', '/images/projects/bh6.png', '/images/projects/bh7.png'],
+      services: ['Commercial Design', 'Structural Engineering', 'Project Management']
+    },
+    {
+      id: 8,
+      title: 'Studio City Super Fun Zone',
+      category: 'casino',
       location: 'Macau',
       year: '2020',
-      type: 'Brand Retail Store Design',
-      area: 'Watch retail boutique',
-      description: 'Complete renovation of Tissot retail space with brand-specific design requirements and high-end finishes.',
-      image: '/images/projects/5.jpg',
-      services: ['Retail Design', 'Brand Compliance', 'Construction Management']
+      type: 'Indoor Entertainment Facility',
+      area: 'Multi-level indoor playground',
+      description: 'Design and construction of indoor entertainment facility featuring interactive play areas and family entertainment zones.',
+      image: '/images/projects/fz1.png',
+      images: ['/images/projects/fz1.png', '/images/projects/fz2.png', '/images/projects/fz4.png', '/images/projects/fz13.png'],
+      services: ['Entertainment Design', 'Safety Engineering', 'MEP Coordination']
+    },
+    {
+      id: 9,
+      title: 'Wynn Palace FIBA 3x3 Court',
+      category: 'casino',
+      location: 'Macau',
+      year: '2021',
+      type: 'Sports Facility Construction',
+      area: 'Professional basketball court',
+      description: 'Construction of FIBA-standard 3x3 basketball court including specialized flooring, lighting, and spectator areas.',
+      image: '/images/projects/F3x3_1.jpg',
+      images: ['/images/projects/F3x3_1.jpg', '/images/projects/F3x3_2.jpg', '/images/projects/F3x3_3.jpg', '/images/projects/F3x3_4.jpg', '/images/projects/F3x3_5.jpg', '/images/projects/F3x3_6.jpg'],
+      services: ['Sports Facility Design', 'Structural Engineering', 'Specialized Systems']
+    },
+    {
+      id: 10,
+      title: 'Saipan Capitol Wonderland',
+      category: 'commercial',
+      location: 'Saipan, Northern Mariana Islands',
+      year: '2019',
+      type: 'Entertainment Complex',
+      area: 'Multi-purpose entertainment venue',
+      description: 'Development of comprehensive entertainment complex featuring diverse recreational facilities and commercial spaces.',
+      image: '/images/projects/wl1.png',
+      images: ['/images/projects/wl1.png', '/images/projects/wl2.png', '/images/projects/wl3.jpg', '/images/projects/wl4.jpg', '/images/projects/wl5.jpg'],
+      services: ['Entertainment Design', 'Structural Engineering', 'Project Coordination']
+    },
+    {
+      id: 11,
+      title: 'Bank of China Nova Branch',
+      category: 'retail',
+      location: 'Macau',
+      year: '2021',
+      type: 'Bank Branch A&A and Rehabilitation',
+      area: 'Commercial banking space renovation',
+      description: 'Complete renovation and rehabilitation of Bank of China branch including interior fit-out, structural modifications, and modern banking facilities.',
+      image: '/images/projects/boc/boc1.jpg',
+      images: ['/images/projects/boc/boc1.jpg', '/images/projects/boc/boc2.jpg', '/images/projects/boc/boc3.png', '/images/projects/boc/boc4.png'],
+      services: ['A&A Design', 'Structural Engineering', 'Interior Design']
+    },
+    {
+      id: 12,
+      title: 'Butani at the Grand Lisboa',
+      category: 'retail',
+      location: 'Macau',
+      year: '2020',
+      type: 'Luxury Jewelry Store',
+      area: 'High-end retail space',
+      description: 'Design and construction of luxury jewelry store at Grand Lisboa featuring premium finishes and specialized display systems.',
+      image: '/images/projects/butani/B1.jpg',
+      images: ['/images/projects/butani/B1.jpg', '/images/projects/butani/b2.jpg', '/images/projects/butani/b3.jpg', '/images/projects/butani/b4.jpg'],
+      services: ['Retail Design', 'Interior Fit-out', 'Specialized Systems']
+    },
+    {
+      id: 13,
+      title: 'COD Crown Tower Podium Slide',
+      category: 'casino',
+      location: 'Macau',
+      year: '2019',
+      type: 'Entertainment Feature Installation',
+      area: 'Large-scale slide installation',
+      description: 'Engineering and installation of signature slide feature at City of Dreams Crown Tower podium area.',
+      image: '/images/projects/cod-slide/slide1.jpg',
+      images: ['/images/projects/cod-slide/slide1.jpg', '/images/projects/cod-slide/slide2.jpg', '/images/projects/cod-slide/slide3.jpg', '/images/projects/cod-slide/slide4.jpg'],
+      services: ['Structural Engineering', 'Entertainment Design', 'Safety Systems']
+    },
+    {
+      id: 14,
+      title: 'Bank of China San Ma Lou Sub-Branch',
+      category: 'retail',
+      location: 'Macau',
+      year: '2020',
+      type: 'Bank Sub-Branch Development',
+      area: 'Full branch banking facility',
+      description: 'Complete development of Bank of China sub-branch including structural modifications, banking systems, and customer service areas.',
+      image: '/images/projects/bocm/bocm1.jpg',
+      images: ['/images/projects/bocm/bocm1.jpg', '/images/projects/bocm/bocm2.jpg', '/images/projects/bocm/bocm3.png', '/images/projects/bocm/bocm4.jpg', '/images/projects/bocm/bocm5.png', '/images/projects/bocm/bocm6.png'],
+      services: ['Banking Design', 'Structural Engineering', 'MEP Systems']
+    },
+    {
+      id: 15,
+      title: 'City of Dreams Longines Shop',
+      category: 'retail',
+      location: 'Macau',
+      year: '2021',
+      type: 'Luxury Watch Retail Store',
+      area: 'Premium retail space',
+      description: 'Design and construction of Longines luxury watch store featuring sophisticated display systems and premium finishes.',
+      image: '/images/projects/longines/long1.png',
+      images: ['/images/projects/longines/long1.png', '/images/projects/longines/long2.jpg', '/images/projects/longines/long3.jpg'],
+      services: ['Retail Design', 'Interior Fit-out', 'Display Systems']
+    },
+    {
+      id: 16,
+      title: 'Parisian Tissot Retail Shop',
+      category: 'retail',
+      location: 'Macau',
+      year: '2020',
+      type: 'Watch Retail Store',
+      area: 'Retail shop fit-out',
+      description: 'Complete fit-out of Tissot retail store at The Parisian Macau including brand-specific design elements and display systems.',
+      image: '/images/projects/tissot/ti1.jpg',
+      images: ['/images/projects/tissot/ti1.jpg', '/images/projects/tissot/ti2.jpg', '/images/projects/tissot/ti3.jpg'],
+      services: ['Retail Design', 'Brand Implementation', 'Interior Fit-out']
+    },
+    {
+      id: 17,
+      title: 'Studio City IWC Shop Front',
+      category: 'retail',
+      location: 'Macau',
+      year: '2021',
+      type: 'Luxury Watch Store Front',
+      area: 'Premium storefront design',
+      description: 'Design and construction of IWC luxury watch store front at Studio City featuring elegant facade and interior design.',
+      image: '/images/projects/iwc/iwc1.jpg',
+      images: ['/images/projects/iwc/iwc1.jpg', '/images/projects/iwc/iwc2.png', '/images/projects/iwc/iwc3.png'],
+      services: ['Facade Design', 'Retail Design', 'Interior Architecture']
+    },
+    {
+      id: 18,
+      title: 'Venetian Golden Fish High Limit Gaming',
+      category: 'casino',
+      location: 'Macau',
+      year: '2019',
+      type: 'High Limit Gaming Area',
+      area: 'Premium gaming facility',
+      description: 'Design and construction of exclusive high limit gaming area featuring luxury finishes and specialized gaming systems.',
+      image: '/images/projects/hl/HL1.jpg',
+      images: ['/images/projects/hl/HL1.jpg', '/images/projects/hl/HL2.png', '/images/projects/hl/HL3.jpg', '/images/projects/hl/HL4.jpg'],
+      services: ['Gaming Design', 'Interior Fit-out', 'Specialized Systems']
+    },
+    {
+      id: 19,
+      title: 'Rua Leste do Mercado de S. Domingos',
+      category: 'commercial',
+      location: 'Macau',
+      year: '2020',
+      type: 'Commercial Building Development',
+      area: 'Mixed-use commercial space',
+      description: 'Development of commercial building at Rua Leste do Mercado de S. Domingos featuring retail and office spaces.',
+      image: '/images/projects/don/don1.png',
+      images: ['/images/projects/don/don1.png', '/images/projects/don/don2.png', '/images/projects/don/don3.png'],
+      services: ['Commercial Design', 'Structural Engineering', 'Mixed-Use Development']
+    },
+    {
+      id: 20,
+      title: '4th Cross-sea Bridge Artificial Island Link',
+      category: 'government',
+      location: 'Macau',
+      year: '2018',
+      type: 'Infrastructure Development',
+      area: 'Major bridge infrastructure',
+      description: 'Engineering consultation for the 4th Cross-sea bridge in Macau artificial island connection, a major infrastructure project.',
+      image: '/images/projects/bridge/bridge1.jpg',
+      images: ['/images/projects/bridge/bridge1.jpg', '/images/projects/bridge/bridge2.jpg', '/images/projects/bridge/bridge3.jpg', '/images/projects/bridge/bridge4.png', '/images/projects/bridge/bridge5.png'],
+      services: ['Infrastructure Engineering', 'Structural Consultation', 'Government Projects']
+    },
+    {
+      id: 21,
+      title: 'Studio City Water Park Phase 2',
+      category: 'entertainment',
+      location: 'Macau',
+      year: '2019',
+      type: 'Water Park Expansion',
+      area: 'Large-scale water park facilities',
+      description: 'Major expansion of Studio City water park facilities including new attractions, structural modifications, and safety systems.',
+      image: '/images/projects/wpark/wpark1.jpg',
+      images: ['/images/projects/wpark/wpark1.jpg', '/images/projects/wpark/wpark2.jpg', '/images/projects/wpark/wpark3.jpg', '/images/projects/wpark/wpark4.png', '/images/projects/wpark/wpark5.png', '/images/projects/wpark/wpark6.png'],
+      services: ['Water Park Engineering', 'Structural Design', 'Safety Systems']
+    },
+    {
+      id: 22,
+      title: 'Wynn Palace Qingdao Beer Festival',
+      category: 'entertainment',
+      location: 'Macau',
+      year: '2020',
+      type: 'Cultural Festival Setup',
+      area: 'Large-scale event infrastructure',
+      description: 'Design and construction of temporary structures and facilities for Qingdao Beer & Cultural Festival at Wynn Palace.',
+      image: '/images/projects/beer/beer1.jpg',
+      images: ['/images/projects/beer/beer1.jpg', '/images/projects/beer/beer2.jpg', '/images/projects/beer/beer3.jpg', '/images/projects/beer/beer4.png', '/images/projects/beer/beer5.png', '/images/projects/beer/beer7.png'],
+      services: ['Event Infrastructure', 'Temporary Structures', 'Cultural Events']
     }
   ];
 
@@ -139,31 +348,30 @@ export default function Projects() {
           className="text-center mb-16"
         >
           <h1 className="text-4xl md:text-6xl font-bold text-neo-dark-gray mb-6">
-            Our Projects
+            {t('projects.title')}
           </h1>
           <p className="text-xl text-neo-gray max-w-3xl mx-auto">
-            Showcasing our expertise across diverse project types, from luxury casino developments 
-            to government buildings and commercial renovations.
+            {t('projects.subtitle')}
           </p>
         </motion.div>
 
         {/* Stats Section */}
         <div className="grid md:grid-cols-4 gap-8 mb-16">
           <div className="text-center bg-white p-6 rounded-lg shadow-lg animate-fade-in-up">
-            <h3 className="text-3xl font-bold text-neo-teal mb-2">200+</h3>
-            <p className="text-neo-gray">Projects Completed</p>
+            <h3 className="text-3xl font-bold text-neo-teal mb-2">100+</h3>
+            <p className="text-neo-gray">{t('projects.stats.completed')}</p>
           </div>
           <div className="text-center bg-white p-6 rounded-lg shadow-lg animate-fade-in-up">
             <h3 className="text-3xl font-bold text-neo-teal mb-2">4</h3>
-            <p className="text-neo-gray">Countries</p>
+            <p className="text-neo-gray">{t('projects.stats.countries')}</p>
           </div>
           <div className="text-center bg-white p-6 rounded-lg shadow-lg animate-fade-in-up">
-            <h3 className="text-3xl font-bold text-neo-teal mb-2">9</h3>
-            <p className="text-neo-gray">Years Experience</p>
+            <h3 className="text-3xl font-bold text-neo-teal mb-2">15+</h3>
+            <p className="text-neo-gray">{t('projects.stats.experience')}</p>
           </div>
           <div className="text-center bg-white p-6 rounded-lg shadow-lg animate-fade-in-up">
             <h3 className="text-3xl font-bold text-neo-teal mb-2">50+</h3>
-            <p className="text-neo-gray">Expert Engineers</p>
+            <p className="text-neo-gray">{t('projects.stats.engineers')}</p>
           </div>
         </div>
 
@@ -205,7 +413,13 @@ export default function Projects() {
               className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 group"
             >
               {/* Project Image */}
-              <div className="relative h-48 overflow-hidden">
+              <div 
+                className="relative h-48 overflow-hidden cursor-pointer"
+                onClick={() => {
+                  setSelectedProject(project);
+                  setCurrentImageIndex(0);
+                }}
+              >
                 <Image 
                   src={project.image} 
                   alt={project.title}
@@ -266,8 +480,14 @@ export default function Projects() {
                   )}
                 </div>
 
-                <button className="w-full bg-neo-teal/5 hover:bg-neo-teal hover:text-white text-neo-teal font-semibold py-3 rounded-lg transition-all duration-300 flex items-center justify-center space-x-2 group/btn">
-                  <span>View Project Details</span>
+                <button 
+                  onClick={() => {
+                    setSelectedProject(project);
+                    setCurrentImageIndex(0);
+                  }}
+                  className="w-full bg-neo-teal/5 hover:bg-neo-teal hover:text-white text-neo-teal font-semibold py-3 rounded-lg transition-all duration-300 flex items-center justify-center space-x-2 group/btn"
+                >
+                  <span>{t('projects.viewDetails')}</span>
                   <ChevronRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
                 </button>
               </div>
@@ -283,22 +503,179 @@ export default function Projects() {
           className="text-center"
         >
           <div className="bg-gradient-to-r from-neo-teal to-neo-dark-teal text-white rounded-xl p-8 max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold mb-4">Have a Project in Mind?</h3>
+            <h3 className="text-2xl font-bold mb-4">{t('projects.cta.title')}</h3>
             <p className="text-lg opacity-95 mb-6">
-              From concept to completion, we bring expertise and innovation to every project. 
-              Let&apos;s discuss how we can bring your vision to life.
+              {t('projects.cta.description')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-neo-teal px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors">
-                Start Your Project
-              </button>
-              <button className="border-2 border-white text-white hover:bg-white hover:text-neo-teal px-8 py-3 rounded-lg font-semibold transition-all">
-                Download Portfolio
-              </button>
+              <a href="/contact" className="inline-block bg-white text-neo-teal px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors text-center">
+                {t('projects.cta.start')}
+              </a>
+              <a 
+                href="/NEO-GENESIS O-Chart & Company Profile.pdf" 
+                download="NEO-GENESIS Company Profile.pdf"
+                className="inline-block border-2 border-white text-white hover:bg-white hover:text-neo-teal px-8 py-3 rounded-lg font-semibold transition-all text-center"
+              >
+                {t('projects.cta.download')}
+              </a>
             </div>
           </div>
         </motion.div>
       </div>
+
+      {/* Client Logos */}
+      <ClientLogos />
+
+      {/* Project Details Modal */}
+      <AnimatePresence>
+        {selectedProject && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            onClick={() => setSelectedProject(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="bg-white rounded-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden shadow-2xl relative"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setSelectedProject(null)}
+                className="absolute top-4 right-4 z-20 bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors shadow-lg"
+              >
+                <X className="h-5 w-5 text-gray-700" />
+              </button>
+
+              <div className="flex flex-col lg:flex-row h-full max-h-[90vh]">
+                {/* Left Side - Image Gallery */}
+                <div className="lg:w-2/3 relative bg-gray-100 flex flex-col">
+
+                  {/* Main Image */}
+                  <div className="relative flex-1 flex items-center justify-center min-h-0">
+                    <div className="relative w-full h-full max-h-[60vh]">
+                      <Image
+                        src={selectedProject.images[currentImageIndex]}
+                        alt={selectedProject.title}
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                    
+                    {/* Navigation Arrows */}
+                    {selectedProject.images.length > 1 && (
+                      <>
+                        <button
+                          onClick={() => setCurrentImageIndex(prev => 
+                            prev === 0 ? selectedProject.images.length - 1 : prev - 1
+                          )}
+                          className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors"
+                        >
+                          <ChevronLeft className="h-5 w-5 text-gray-700" />
+                        </button>
+                        <button
+                          onClick={() => setCurrentImageIndex(prev => 
+                            prev === selectedProject.images.length - 1 ? 0 : prev + 1
+                          )}
+                          className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors"
+                        >
+                          <ChevronRightIcon className="h-5 w-5 text-gray-700" />
+                        </button>
+                      </>
+                    )}
+                  </div>
+
+                  {/* Image Thumbnails */}
+                  {selectedProject.images.length > 1 && (
+                    <div className="p-4 flex space-x-2 overflow-x-auto">
+                      {selectedProject.images.map((image, index) => (
+                        <button
+                          key={index}
+                          onClick={() => setCurrentImageIndex(index)}
+                          className={`relative w-24 h-18 flex-shrink-0 rounded-lg overflow-hidden border-2 transition-colors ${
+                            index === currentImageIndex ? 'border-neo-teal' : 'border-gray-200'
+                          }`}
+                        >
+                          <Image
+                            src={image}
+                            alt={`${selectedProject.title} ${index + 1}`}
+                            fill
+                            className="object-cover"
+                          />
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Right Side - Project Information */}
+                <div className="lg:w-1/3 p-6 lg:p-8 overflow-y-auto">
+                  <div className="space-y-6">
+                    {/* Project Title & Year */}
+                    <div>
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="bg-neo-teal/10 text-neo-teal text-sm px-3 py-1 rounded-full font-semibold">
+                          {selectedProject.year}
+                        </span>
+                      </div>
+                      <h2 className="text-2xl lg:text-3xl font-bold text-neo-dark-gray mb-2">
+                        {selectedProject.title}
+                      </h2>
+                    </div>
+
+                    {/* Location & Type */}
+                    <div className="space-y-3">
+                      <div className="flex items-center space-x-2 text-neo-gray">
+                        <MapPin className="h-5 w-5 text-neo-teal" />
+                        <span className="font-medium">{selectedProject.location}</span>
+                      </div>
+                      <div className="flex items-center space-x-2 text-neo-gray">
+                        <Calendar className="h-5 w-5 text-neo-teal" />
+                        <span className="font-medium">{selectedProject.type}</span>
+                      </div>
+                    </div>
+
+                    {/* Description */}
+                    <div>
+                      <h3 className="text-lg font-semibold text-neo-dark-gray mb-3">{t('projects.modal.overview')}</h3>
+                      <p className="text-neo-gray leading-relaxed">
+                        {selectedProject.description}
+                      </p>
+                    </div>
+
+                    {/* Project Scope */}
+                    <div>
+                      <h3 className="text-lg font-semibold text-neo-dark-gray mb-3">{t('projects.modal.scope')}</h3>
+                      <p className="text-neo-gray">{selectedProject.area}</p>
+                    </div>
+
+                    {/* Services */}
+                    <div>
+                      <h3 className="text-lg font-semibold text-neo-dark-gray mb-3">{t('projects.modal.services')}</h3>
+                      <div className="flex flex-wrap gap-2">
+                        {selectedProject.services.map((service, index) => (
+                          <span
+                            key={index}
+                            className="bg-neo-teal/10 text-neo-teal text-sm px-3 py-1 rounded-full"
+                          >
+                            {service}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

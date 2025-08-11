@@ -4,7 +4,7 @@ import Hero from '@/components/Hero';
 import Services from '@/components/Services';
 import ProjectPortfolio from '@/components/ProjectPortfolio';
 import GlobalOffices from '@/components/GlobalOffices';
-import Team from '@/components/Team';
+import ClientLogos from '@/components/ClientLogos';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Home() {
@@ -23,8 +23,8 @@ export default function Home() {
       {/* Global Offices */}
       <GlobalOffices />
       
-      {/* Team Section */}
-      <Team />
+      {/* Client Logos */}
+      <ClientLogos />
       
       {/* Call to Action */}
       <section className="bg-neo-teal py-16">

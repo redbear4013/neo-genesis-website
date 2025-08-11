@@ -85,60 +85,6 @@ export default function BIM() {
           </div>
         </div>
 
-        {/* BIM Dimensions */}
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold text-neo-dark-gray text-center mb-12">BIM Dimensions</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-white rounded-lg shadow-lg p-6 text-center animate-slide-in-left">
-              <div className="text-4xl mb-4">📐</div>
-              <h3 className="text-xl font-bold text-neo-dark-gray mb-4">3D Modeling</h3>
-              <p className="text-neo-gray">
-                Three-dimensional geometric representation with spatial relationships, 
-                light analysis, and geographic information.
-              </p>
-            </div>
-            <div className="bg-white rounded-lg shadow-lg p-6 text-center animate-fade-in-up">
-              <div className="text-4xl mb-4">⏰</div>
-              <h3 className="text-xl font-bold text-neo-dark-gray mb-4">4D Scheduling</h3>
-              <p className="text-neo-gray">
-                Time-based information linking 3D elements with time-related data 
-                to enable project scheduling and sequencing.
-              </p>
-            </div>
-            <div className="bg-white rounded-lg shadow-lg p-6 text-center animate-slide-in-left">
-              <div className="text-4xl mb-4">💰</div>
-              <h3 className="text-xl font-bold text-neo-dark-gray mb-4">5D Cost Management</h3>
-              <p className="text-neo-gray">
-                Cost-related information integrated with 3D and 4D data for 
-                accurate cost estimation and budget management.
-              </p>
-            </div>
-            <div className="bg-white rounded-lg shadow-lg p-6 text-center animate-fade-in-up">
-              <div className="text-4xl mb-4">🌱</div>
-              <h3 className="text-xl font-bold text-neo-dark-gray mb-4">6D Sustainability</h3>
-              <p className="text-neo-gray">
-                Environmental impact analysis and energy performance data 
-                for sustainable building design and operation.
-              </p>
-            </div>
-            <div className="bg-white rounded-lg shadow-lg p-6 text-center animate-slide-in-left">
-              <div className="text-4xl mb-4">🔧</div>
-              <h3 className="text-xl font-bold text-neo-dark-gray mb-4">7D Facility Management</h3>
-              <p className="text-neo-gray">
-                Operational information for facility management including 
-                maintenance schedules, warranties, and asset information.
-              </p>
-            </div>
-            <div className="bg-white rounded-lg shadow-lg p-6 text-center animate-fade-in-up">
-              <div className="text-4xl mb-4">⚠️</div>
-              <h3 className="text-xl font-bold text-neo-dark-gray mb-4">8D Safety</h3>
-              <p className="text-neo-gray">
-                Safety information integration for hazard identification, 
-                risk assessment, and safety planning throughout the project.
-              </p>
-            </div>
-          </div>
-        </div>
 
         {/* Our BIM Services */}
         <div className="mb-16">
@@ -248,11 +194,11 @@ export default function BIM() {
                 </ul>
               </div>
               <div className="text-center">
-                <h3 className="text-xl font-bold text-neo-dark-gray mb-4">Analysis & Visualization</h3>
+                <h3 className="text-xl font-bold text-neo-dark-gray mb-4">Analysis</h3>
                 <ul className="space-y-2 text-neo-gray">
                   <li>Navisworks</li>
-                  <li>Lumion</li>
-                  <li>Enscape</li>
+                  <li>Trimble</li>
+                  <li>Solidworks</li>
                   <li>Synchro</li>
                 </ul>
               </div>
@@ -266,9 +212,9 @@ export default function BIM() {
           <p className="text-xl mb-6">
             Contact our BIM specialists to discuss how we can optimize your construction process.
           </p>
-          <button className="bg-neo-teal hover:bg-neo-dark-teal px-8 py-3 rounded-lg font-semibold transition-colors">
+          <a href="/contact" className="inline-block bg-neo-teal hover:bg-neo-dark-teal px-8 py-3 rounded-lg font-semibold transition-colors">
             Get BIM Consultation
-          </button>
+          </a>
         </div>
       </div>
     </div>

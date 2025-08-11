@@ -21,7 +21,7 @@ const NeoGenesisLogo: React.FC<NeoGenesisLogoProps> = ({ className = '', size = 
         alt="NEO GENESIS Logo"
         fill
         className="object-contain"
-        style={{ transform: 'translateY(-30px)' }}
+        style={{ transform: 'translateY(0px)' }}
         priority
       />
     </div>

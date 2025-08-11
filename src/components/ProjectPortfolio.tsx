@@ -6,14 +6,14 @@ import { motion } from 'framer-motion';
 import { Calendar, MapPin, ExternalLink, ChevronRight } from 'lucide-react';
 
 const ProjectPortfolio: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState('all');
+  const [activeCategory, setActiveCategory] = useState('casino');
 
   const categories = [
-    { id: 'all', name: 'All Projects', count: 7 },
-    { id: 'casino', name: 'Casino & Resort', count: 3 },
-    { id: 'commercial', name: 'Commercial', count: 1 },
+    { id: 'casino', name: 'Casino & Resort', count: 9 },
+    { id: 'commercial', name: 'Commercial', count: 3 },
+    { id: 'retail', name: 'Retail & A&A', count: 6 },
     { id: 'government', name: 'Government', count: 1 },
-    { id: 'aa', name: 'A&A Projects', count: 2 },
+    { id: 'entertainment', name: 'Entertainment', count: 2 },
   ];
 
   const projects = [
@@ -27,6 +27,7 @@ const ProjectPortfolio: React.FC = () => {
       area: '220 sqm addition, 130 sqm modification',
       description: 'Major structural renovation including new escalator and stair installation, floor slab infill, and comprehensive building modifications.',
       image: '/images/projects/1.png',
+      images: ['/images/projects/1.png', '/images/projects/2.png', '/images/projects/3.png', '/images/projects/4.jpg', '/images/projects/5.jpg'],
       services: ['Structural Engineering', 'Construction Management', 'Building Permits']
     },
     {
@@ -39,6 +40,7 @@ const ProjectPortfolio: React.FC = () => {
       area: 'Over 140,000 sqm with 14-story hotel tower',
       description: 'Luxury integrated resort with more than 340 rooms, 15 ultra-luxury villas, high-end dining and entertainment facilities.',
       image: '/images/projects/BS1.png',
+      images: ['/images/projects/BS1.png', '/images/projects/BS2.png', '/images/projects/BS3.png', '/images/projects/BS4.png', '/images/projects/BS5.png', '/images/projects/BS6.png', '/images/projects/BS7.png'],
       services: ['Structural Consultancy', 'Project Management', 'BIM Modeling']
     },
     {
@@ -51,61 +53,246 @@ const ProjectPortfolio: React.FC = () => {
       area: 'Integrated resort complex',
       description: 'Luxury integrated resort featuring world-class gaming facilities, premium accommodations, and entertainment venues.',
       image: '/images/projects/WP1.jpg',
+      images: ['/images/projects/WP1.jpg', '/images/projects/WP2.jpg', '/images/projects/WP3.jpg', '/images/projects/WP4.png', '/images/projects/WP5.png', '/images/projects/WP6.png', '/images/projects/WP7.png'],
       services: ['Structural Engineering', 'BIM Coordination', 'Project Management']
     },
     {
       id: 4,
-      title: 'Macau Bank of China - San Ma Lou Sub-Branch',
-      category: 'commercial',
+      title: 'City of Dreams Façade Enhancement',
+      category: 'casino',
       location: 'Macau',
       year: '2020',
-      type: 'Bank Branch Remodeling',
-      area: 'Complete interior renovation',
-      description: 'Adding new mezzanine floor and new stairs, glass facade wall replacement, and comprehensive interior modifications.',
-      image: '/images/projects/2.png',
-      services: ['Structural Analysis', 'Interior Design Support', 'Regulatory Approval']
+      type: 'Façade Renovation & Enhancement',
+      area: 'Large-scale façade modification',
+      description: 'Comprehensive façade enhancement project including structural modifications, aesthetic improvements, and building envelope upgrades.',
+      image: '/images/projects/cod1.jpg',
+      images: ['/images/projects/cod1.jpg', '/images/projects/cod2.png', '/images/projects/cod3.png', '/images/projects/cod4.jpg', '/images/projects/cod5.png', '/images/projects/cod6.jpg'],
+      services: ['Façade Engineering', 'Structural Analysis', 'Project Management']
     },
     {
       id: 5,
-      title: 'New Immigration Building Design',
-      category: 'government',
-      location: 'Macau',
-      year: '2011',
-      type: 'Government Building Architecture',
-      area: 'Multi-story government facility',
-      description: 'Comprehensive design and planning for new immigration building including architectural optimization and space utilization.',
-      image: '/images/projects/3.png',
-      services: ['Architectural Design', 'Space Planning', 'Government Compliance']
-    },
-    {
-      id: 6,
-      title: 'Butani at the Grand Lisboa',
-      category: 'aa',
-      location: 'Macau',
-      year: '2021',
-      type: 'Luxury Retail Store Renovation',
-      area: 'High-end jewelry store fit-out',
-      description: 'Premium jewelry store renovation featuring sophisticated design elements and luxury retail space optimization.',
-      image: '/images/projects/4.jpg',
-      services: ['A&A Projects', 'Luxury Fit-out', 'MEP Coordination']
+      title: 'Hilton Saipan Garden Resort',
+      category: 'casino',
+      location: 'Saipan, Northern Mariana Islands',
+      year: '2017',
+      type: 'Resort Development & Construction',
+      area: 'Full resort complex with amenities',
+      description: 'Complete resort development including guest accommodations, recreational facilities, and landscape integration.',
+      image: '/images/projects/Hil1.png',
+      images: ['/images/projects/Hil1.png', '/images/projects/Hil2.png', '/images/projects/Hil3.png', '/images/projects/Hil4.png', '/images/projects/Hil5.png', '/images/projects/Hil6.jpg'],
+      services: ['Resort Planning', 'Structural Engineering', 'Project Management']
     },
     {
       id: 7,
-      title: 'Macau Parisian Tissot Retail Shop',
-      category: 'aa',
+      title: 'Saipan Beverly Hill Development',
+      category: 'commercial',
+      location: 'Saipan, Northern Mariana Islands',
+      year: '2018',
+      type: 'Mixed-Use Commercial Development',
+      area: 'Large-scale commercial complex',
+      description: 'Comprehensive commercial development featuring retail spaces, office areas, and mixed-use facilities.',
+      image: '/images/projects/bh1.png',
+      images: ['/images/projects/bh1.png', '/images/projects/bh2.png', '/images/projects/bh3.png', '/images/projects/bh4.png', '/images/projects/bh5.png', '/images/projects/bh6.png', '/images/projects/bh7.png'],
+      services: ['Commercial Design', 'Structural Engineering', 'Project Management']
+    },
+    {
+      id: 8,
+      title: 'Studio City Super Fun Zone',
+      category: 'casino',
       location: 'Macau',
       year: '2020',
-      type: 'Brand Retail Store Design',
-      area: 'Watch retail boutique',
-      description: 'Complete renovation of Tissot retail space with brand-specific design requirements and high-end finishes.',
-      image: '/images/projects/5.jpg',
-      services: ['Retail Design', 'Brand Compliance', 'Construction Management']
+      type: 'Indoor Entertainment Facility',
+      area: 'Multi-level indoor playground',
+      description: 'Design and construction of indoor entertainment facility featuring interactive play areas and family entertainment zones.',
+      image: '/images/projects/fz1.png',
+      images: ['/images/projects/fz1.png', '/images/projects/fz2.png', '/images/projects/fz4.png', '/images/projects/fz13.png'],
+      services: ['Entertainment Design', 'Safety Engineering', 'MEP Coordination']
+    },
+    {
+      id: 9,
+      title: 'Wynn Palace FIBA 3x3 Court',
+      category: 'casino',
+      location: 'Macau',
+      year: '2021',
+      type: 'Sports Facility Construction',
+      area: 'Professional basketball court',
+      description: 'Construction of FIBA-standard 3x3 basketball court including specialized flooring, lighting, and spectator areas.',
+      image: '/images/projects/F3x3_1.jpg',
+      images: ['/images/projects/F3x3_1.jpg', '/images/projects/F3x3_2.jpg', '/images/projects/F3x3_3.jpg', '/images/projects/F3x3_4.jpg', '/images/projects/F3x3_5.jpg', '/images/projects/F3x3_6.jpg'],
+      services: ['Sports Facility Design', 'Structural Engineering', 'Specialized Systems']
+    },
+    {
+      id: 10,
+      title: 'Saipan Capitol Wonderland',
+      category: 'commercial',
+      location: 'Saipan, Northern Mariana Islands',
+      year: '2019',
+      type: 'Entertainment Complex',
+      area: 'Multi-purpose entertainment venue',
+      description: 'Development of comprehensive entertainment complex featuring diverse recreational facilities and commercial spaces.',
+      image: '/images/projects/wl1.png',
+      images: ['/images/projects/wl1.png', '/images/projects/wl2.png', '/images/projects/wl3.jpg', '/images/projects/wl4.jpg', '/images/projects/wl5.jpg'],
+      services: ['Entertainment Design', 'Structural Engineering', 'Project Coordination']
+    },
+    {
+      id: 11,
+      title: 'Bank of China Nova Branch',
+      category: 'retail',
+      location: 'Macau',
+      year: '2021',
+      type: 'Bank Branch A&A and Rehabilitation',
+      area: 'Commercial banking space renovation',
+      description: 'Complete renovation and rehabilitation of Bank of China branch including interior fit-out, structural modifications, and modern banking facilities.',
+      image: '/images/projects/boc/boc1.jpg',
+      images: ['/images/projects/boc/boc1.jpg', '/images/projects/boc/boc2.jpg', '/images/projects/boc/boc3.png', '/images/projects/boc/boc4.png'],
+      services: ['A&A Design', 'Structural Engineering', 'Interior Design']
+    },
+    {
+      id: 12,
+      title: 'Butani at the Grand Lisboa',
+      category: 'retail',
+      location: 'Macau',
+      year: '2020',
+      type: 'Luxury Jewelry Store',
+      area: 'High-end retail space',
+      description: 'Design and construction of luxury jewelry store at Grand Lisboa featuring premium finishes and specialized display systems.',
+      image: '/images/projects/butani/B1.jpg',
+      images: ['/images/projects/butani/B1.jpg', '/images/projects/butani/b2.jpg', '/images/projects/butani/b3.jpg', '/images/projects/butani/b4.jpg'],
+      services: ['Retail Design', 'Interior Fit-out', 'Specialized Systems']
+    },
+    {
+      id: 13,
+      title: 'COD Crown Tower Podium Slide',
+      category: 'casino',
+      location: 'Macau',
+      year: '2019',
+      type: 'Entertainment Feature Installation',
+      area: 'Large-scale slide installation',
+      description: 'Engineering and installation of signature slide feature at City of Dreams Crown Tower podium area.',
+      image: '/images/projects/cod-slide/slide1.jpg',
+      images: ['/images/projects/cod-slide/slide1.jpg', '/images/projects/cod-slide/slide2.jpg', '/images/projects/cod-slide/slide3.jpg', '/images/projects/cod-slide/slide4.jpg'],
+      services: ['Structural Engineering', 'Entertainment Design', 'Safety Systems']
+    },
+    {
+      id: 14,
+      title: 'Bank of China San Ma Lou Sub-Branch',
+      category: 'retail',
+      location: 'Macau',
+      year: '2020',
+      type: 'Bank Sub-Branch Development',
+      area: 'Full branch banking facility',
+      description: 'Complete development of Bank of China sub-branch including structural modifications, banking systems, and customer service areas.',
+      image: '/images/projects/bocm/bocm1.jpg',
+      images: ['/images/projects/bocm/bocm1.jpg', '/images/projects/bocm/bocm2.jpg', '/images/projects/bocm/bocm3.png', '/images/projects/bocm/bocm4.jpg', '/images/projects/bocm/bocm5.png', '/images/projects/bocm/bocm6.png'],
+      services: ['Banking Design', 'Structural Engineering', 'MEP Systems']
+    },
+    {
+      id: 15,
+      title: 'City of Dreams Longines Shop',
+      category: 'retail',
+      location: 'Macau',
+      year: '2021',
+      type: 'Luxury Watch Retail Store',
+      area: 'Premium retail space',
+      description: 'Design and construction of Longines luxury watch store featuring sophisticated display systems and premium finishes.',
+      image: '/images/projects/longines/long1.png',
+      images: ['/images/projects/longines/long1.png', '/images/projects/longines/long2.jpg', '/images/projects/longines/long3.jpg'],
+      services: ['Retail Design', 'Interior Fit-out', 'Display Systems']
+    },
+    {
+      id: 16,
+      title: 'Parisian Tissot Retail Shop',
+      category: 'retail',
+      location: 'Macau',
+      year: '2020',
+      type: 'Watch Retail Store',
+      area: 'Retail shop fit-out',
+      description: 'Complete fit-out of Tissot retail store at The Parisian Macau including brand-specific design elements and display systems.',
+      image: '/images/projects/tissot/ti1.jpg',
+      images: ['/images/projects/tissot/ti1.jpg', '/images/projects/tissot/ti2.jpg', '/images/projects/tissot/ti3.jpg'],
+      services: ['Retail Design', 'Brand Implementation', 'Interior Fit-out']
+    },
+    {
+      id: 17,
+      title: 'Studio City IWC Shop Front',
+      category: 'retail',
+      location: 'Macau',
+      year: '2021',
+      type: 'Luxury Watch Store Front',
+      area: 'Premium storefront design',
+      description: 'Design and construction of IWC luxury watch store front at Studio City featuring elegant facade and interior design.',
+      image: '/images/projects/iwc/iwc1.jpg',
+      images: ['/images/projects/iwc/iwc1.jpg', '/images/projects/iwc/iwc2.png', '/images/projects/iwc/iwc3.png'],
+      services: ['Facade Design', 'Retail Design', 'Interior Architecture']
+    },
+    {
+      id: 18,
+      title: 'Venetian Golden Fish High Limit Gaming',
+      category: 'casino',
+      location: 'Macau',
+      year: '2019',
+      type: 'High Limit Gaming Area',
+      area: 'Premium gaming facility',
+      description: 'Design and construction of exclusive high limit gaming area featuring luxury finishes and specialized gaming systems.',
+      image: '/images/projects/hl/HL1.jpg',
+      images: ['/images/projects/hl/HL1.jpg', '/images/projects/hl/HL2.png', '/images/projects/hl/HL3.jpg', '/images/projects/hl/HL4.jpg'],
+      services: ['Gaming Design', 'Interior Fit-out', 'Specialized Systems']
+    },
+    {
+      id: 19,
+      title: 'Rua Leste do Mercado de S. Domingos',
+      category: 'commercial',
+      location: 'Macau',
+      year: '2020',
+      type: 'Commercial Building Development',
+      area: 'Mixed-use commercial space',
+      description: 'Development of commercial building at Rua Leste do Mercado de S. Domingos featuring retail and office spaces.',
+      image: '/images/projects/don/don1.png',
+      images: ['/images/projects/don/don1.png', '/images/projects/don/don2.png', '/images/projects/don/don3.png'],
+      services: ['Commercial Design', 'Structural Engineering', 'Mixed-Use Development']
+    },
+    {
+      id: 20,
+      title: '4th Cross-sea Bridge Artificial Island Link',
+      category: 'government',
+      location: 'Macau',
+      year: '2018',
+      type: 'Infrastructure Development',
+      area: 'Major bridge infrastructure',
+      description: 'Engineering consultation for the 4th Cross-sea bridge in Macau artificial island connection, a major infrastructure project.',
+      image: '/images/projects/bridge/bridge1.jpg',
+      images: ['/images/projects/bridge/bridge1.jpg', '/images/projects/bridge/bridge2.jpg', '/images/projects/bridge/bridge3.jpg', '/images/projects/bridge/bridge4.png', '/images/projects/bridge/bridge5.png'],
+      services: ['Infrastructure Engineering', 'Structural Consultation', 'Government Projects']
+    },
+    {
+      id: 21,
+      title: 'Studio City Water Park Phase 2',
+      category: 'entertainment',
+      location: 'Macau',
+      year: '2019',
+      type: 'Water Park Expansion',
+      area: 'Large-scale water park facilities',
+      description: 'Major expansion of Studio City water park facilities including new attractions, structural modifications, and safety systems.',
+      image: '/images/projects/wpark/wpark1.jpg',
+      images: ['/images/projects/wpark/wpark1.jpg', '/images/projects/wpark/wpark2.jpg', '/images/projects/wpark/wpark3.jpg', '/images/projects/wpark/wpark4.png', '/images/projects/wpark/wpark5.png', '/images/projects/wpark/wpark6.png'],
+      services: ['Water Park Engineering', 'Structural Design', 'Safety Systems']
+    },
+    {
+      id: 22,
+      title: 'Wynn Palace Qingdao Beer Festival',
+      category: 'entertainment',
+      location: 'Macau',
+      year: '2020',
+      type: 'Cultural Festival Setup',
+      area: 'Large-scale event infrastructure',
+      description: 'Design and construction of temporary structures and facilities for Qingdao Beer & Cultural Festival at Wynn Palace.',
+      image: '/images/projects/beer/beer1.jpg',
+      images: ['/images/projects/beer/beer1.jpg', '/images/projects/beer/beer2.jpg', '/images/projects/beer/beer3.jpg', '/images/projects/beer/beer4.png', '/images/projects/beer/beer5.png', '/images/projects/beer/beer7.png'],
+      services: ['Event Infrastructure', 'Temporary Structures', 'Cultural Events']
     }
   ];
 
-  const filteredProjects = activeCategory === 'all' 
-    ? projects 
-    : projects.filter(project => project.category === activeCategory);
+  const filteredProjects = projects.filter(project => project.category === activeCategory);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -129,7 +316,7 @@ const ProjectPortfolio: React.FC = () => {
   };
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

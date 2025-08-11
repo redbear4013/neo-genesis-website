@@ -3,37 +3,30 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { 
-  Building, 
-  Search, 
-  Settings, 
+  Building2, 
+  ClipboardCheck, 
   FileText, 
-  Hammer, 
+  HardHat, 
   Box, 
-  BarChart3 
+  Calendar 
 } from 'lucide-react';
 
 const Services: React.FC = () => {
   const services = [
     {
-      icon: Building,
+      icon: Building2,
       title: 'Structural Consultancy Services',
       description: 'Expert structural engineering consultation for projects of all scales, ensuring safety and compliance with international standards.',
       features: ['Structural Analysis', 'Foundation Design', 'Seismic Assessment']
     },
     {
-      icon: Search,
-      title: 'Special Inspections',
-      description: 'Comprehensive inspection services throughout construction phases to ensure quality and regulatory compliance.',
-      features: ['Construction Monitoring', 'Quality Assurance', 'Safety Inspections']
+      icon: ClipboardCheck,
+      title: 'Structural Inspection and QA/QC',
+      description: 'Comprehensive quality assurance, quality control, and inspection services ensuring structural integrity and regulatory compliance.',
+      features: ['Construction Monitoring', 'Material Testing', 'Quality Control', 'Safety Inspections', 'Standards Compliance']
     },
     {
-      icon: Settings,
-      title: 'QA/QC For Structural Elements',
-      description: 'Rigorous quality assurance and quality control processes for all structural components and systems.',
-      features: ['Material Testing', 'Process Verification', 'Standards Compliance']
-    },
-    {
-      icon: Hammer,
+      icon: HardHat,
       title: 'Construction Management',
       description: 'End-to-end project management services from planning to completion, ensuring timely and budget-conscious delivery.',
       features: ['Project Planning', 'Resource Management', 'Timeline Coordination']
@@ -51,7 +44,7 @@ const Services: React.FC = () => {
       features: ['3D Modeling', 'Clash Detection', 'Project Visualization']
     },
     {
-      icon: BarChart3,
+      icon: Calendar,
       title: 'Exhibition & Trade Show Construction',
       description: 'Specialized expertise in large-scale exhibition and entertainment venue construction and modifications.',
       features: ['Event Structures', 'Temporary Installations', 'Trade Show Design']
@@ -80,14 +73,14 @@ const Services: React.FC = () => {
   };
 
   return (
-    <section className="py-20 bg-neo-off-white">
+    <section className="py-16 bg-neo-off-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <h2 className="text-4xl lg:text-5xl font-bold text-neo-dark-gray mb-6">
             Our <span className="text-neo-teal">Services</span>
@@ -151,7 +144,7 @@ const Services: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.5, duration: 0.8 }}
-          className="text-center mt-16"
+          className="text-center mt-12"
         >
           <div className="bg-gradient-to-r from-neo-teal to-neo-dark-teal text-white rounded-xl p-8 max-w-4xl mx-auto">
             <h3 className="text-2xl font-bold mb-4">Need a Custom Solution?</h3>
@@ -159,9 +152,9 @@ const Services: React.FC = () => {
               Every project is unique. Let us work with you to develop a tailored approach 
               that meets your specific requirements and exceeds your expectations.
             </p>
-            <button className="bg-white text-neo-teal px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors">
+            <a href="/contact" className="inline-block bg-white text-neo-teal px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors">
               Discuss Your Project
-            </button>
+            </a>
           </div>
         </motion.div>
       </div>

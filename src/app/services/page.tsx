@@ -13,101 +13,91 @@ export default function Services() {
         </div>
 
         {/* Main Services */}
-        <div className="grid lg:grid-cols-2 gap-12 mb-16">
-          {/* Structural Engineering */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          {/* Structural Consultancy Services */}
           <div className="bg-white rounded-lg shadow-lg p-8 animate-slide-in-left">
             <div className="text-4xl mb-4">🏢</div>
-            <h2 className="text-2xl font-bold text-neo-dark-gray mb-4">Structural Engineering</h2>
+            <h2 className="text-2xl font-bold text-neo-dark-gray mb-4">Structural Consultancy Services</h2>
             <p className="text-neo-gray mb-6">
-              Our structural engineering team provides comprehensive design and analysis services for buildings, 
-              bridges, and infrastructure projects of all scales.
+              Expert structural engineering consultation for projects of all scales, ensuring safety and compliance with international standards.
             </p>
             <ul className="space-y-2 text-neo-gray">
-              <li>• Structural Design & Analysis</li>
-              <li>• Seismic Engineering</li>
+              <li>• Structural Analysis</li>
               <li>• Foundation Design</li>
-              <li>• Retrofitting & Rehabilitation</li>
-              <li>• Code Compliance & Certification</li>
+              <li>• Seismic Assessment</li>
             </ul>
           </div>
 
-          {/* Project Management */}
+          {/* Structural Inspection and QA/QC */}
           <div className="bg-white rounded-lg shadow-lg p-8 animate-fade-in-up">
-            <div className="text-4xl mb-4">📊</div>
-            <h2 className="text-2xl font-bold text-neo-dark-gray mb-4">Project Management</h2>
+            <div className="text-4xl mb-4">✅</div>
+            <h2 className="text-2xl font-bold text-neo-dark-gray mb-4">Structural Inspection and QA/QC</h2>
             <p className="text-neo-gray mb-6">
-              End-to-end project management services ensuring timely delivery, budget control, and quality assurance 
-              throughout the entire project lifecycle.
+              Comprehensive quality assurance, quality control, and inspection services ensuring structural integrity and regulatory compliance.
             </p>
             <ul className="space-y-2 text-neo-gray">
-              <li>• Project Planning & Scheduling</li>
-              <li>• Cost Management & Control</li>
-              <li>• Quality Assurance</li>
-              <li>• Risk Management</li>
-              <li>• Stakeholder Coordination</li>
+              <li>• Construction Monitoring</li>
+              <li>• Material Testing</li>
+              <li>• Quality Control</li>
+              <li>• Safety Inspections</li>
+              <li>• Standards Compliance</li>
             </ul>
           </div>
 
-          {/* BIM Technology */}
+          {/* Construction Management */}
           <div className="bg-white rounded-lg shadow-lg p-8 animate-slide-in-left">
-            <div className="text-4xl mb-4">💻</div>
-            <h2 className="text-2xl font-bold text-neo-dark-gray mb-4">BIM Technology</h2>
+            <div className="text-4xl mb-4">⛑️</div>
+            <h2 className="text-2xl font-bold text-neo-dark-gray mb-4">Construction Management</h2>
             <p className="text-neo-gray mb-6">
-              Advanced Building Information Modeling (BIM) services that enhance collaboration, reduce errors, 
-              and optimize project efficiency from conception to completion.
+              End-to-end project management services from planning to completion, ensuring timely and budget-conscious delivery.
             </p>
             <ul className="space-y-2 text-neo-gray">
-              <li>• 3D Modeling & Visualization</li>
-              <li>• 4D Scheduling Integration</li>
-              <li>• 5D Cost Management</li>
-              <li>• Clash Detection & Resolution</li>
-              <li>• BIM Implementation Training</li>
+              <li>• Project Planning</li>
+              <li>• Resource Management</li>
+              <li>• Timeline Coordination</li>
             </ul>
           </div>
 
-          {/* Consulting Services */}
+          {/* Building Department Submission */}
           <div className="bg-white rounded-lg shadow-lg p-8 animate-fade-in-up">
-            <div className="text-4xl mb-4">💡</div>
-            <h2 className="text-2xl font-bold text-neo-dark-gray mb-4">Engineering Consulting</h2>
+            <div className="text-4xl mb-4">📄</div>
+            <h2 className="text-2xl font-bold text-neo-dark-gray mb-4">Building Department Submission</h2>
             <p className="text-neo-gray mb-6">
-              Expert consulting services providing strategic guidance, technical expertise, and innovative solutions 
-              for complex engineering challenges.
+              Professional handling of all regulatory submissions and approvals across multiple jurisdictions.
             </p>
             <ul className="space-y-2 text-neo-gray">
-              <li>• Feasibility Studies</li>
-              <li>• Technical Due Diligence</li>
-              <li>• Design Review & Optimization</li>
-              <li>• Sustainability Consulting</li>
+              <li>• Permit Applications</li>
               <li>• Regulatory Compliance</li>
+              <li>• Documentation Preparation</li>
             </ul>
           </div>
-        </div>
 
-        {/* Specialized Services */}
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold text-neo-dark-gray text-center mb-12">Specialized Services</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center bg-neo-teal text-white p-8 rounded-lg animate-fade-in-up">
-              <div className="text-4xl mb-4">🌱</div>
-              <h3 className="text-xl font-bold mb-4">Sustainable Design</h3>
-              <p>
-                Green building solutions and LEED certification support for environmentally responsible construction.
-              </p>
-            </div>
-            <div className="text-center bg-neo-dark-teal text-white p-8 rounded-lg animate-fade-in-up">
-              <div className="text-4xl mb-4">🔧</div>
-              <h3 className="text-xl font-bold mb-4">MEP Engineering</h3>
-              <p>
-                Mechanical, electrical, and plumbing systems design and coordination for optimal building performance.
-              </p>
-            </div>
-            <div className="text-center bg-neo-teal text-white p-8 rounded-lg animate-fade-in-up">
-              <div className="text-4xl mb-4">🔍</div>
-              <h3 className="text-xl font-bold mb-4">Quality Control</h3>
-              <p>
-                Comprehensive inspection and testing services ensuring compliance with international standards.
-              </p>
-            </div>
+          {/* BIM Services */}
+          <div className="bg-white rounded-lg shadow-lg p-8 animate-slide-in-left">
+            <div className="text-4xl mb-4">📦</div>
+            <h2 className="text-2xl font-bold text-neo-dark-gray mb-4">BIM Services</h2>
+            <p className="text-neo-gray mb-6">
+              Advanced Building Information Modeling technology for superior project visualization and coordination.
+            </p>
+            <ul className="space-y-2 text-neo-gray">
+              <li>• 3D Modeling</li>
+              <li>• Clash Detection</li>
+              <li>• Project Visualization</li>
+            </ul>
+          </div>
+
+          {/* Exhibition & Trade Show Construction */}
+          <div className="bg-white rounded-lg shadow-lg p-8 animate-fade-in-up">
+            <div className="text-4xl mb-4">📅</div>
+            <h2 className="text-2xl font-bold text-neo-dark-gray mb-4">Exhibition & Trade Show Construction</h2>
+            <p className="text-neo-gray mb-6">
+              Specialized expertise in large-scale exhibition and entertainment venue construction and modifications.
+            </p>
+            <ul className="space-y-2 text-neo-gray">
+              <li>• Event Structures</li>
+              <li>• Temporary Installations</li>
+              <li>• Trade Show Design</li>
+            </ul>
           </div>
         </div>
 
@@ -117,9 +107,9 @@ export default function Services() {
           <p className="text-xl mb-6">
             Contact our expert team to discuss how we can bring your vision to life.
           </p>
-          <button className="bg-neo-teal hover:bg-neo-dark-teal px-8 py-3 rounded-lg font-semibold transition-colors">
+          <a href="/contact" className="inline-block bg-neo-teal hover:bg-neo-dark-teal px-8 py-3 rounded-lg font-semibold transition-colors">
             Get in Touch
-          </button>
+          </a>
         </div>
       </div>
     </div>

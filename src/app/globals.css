@@ -55,10 +55,48 @@ html {
   }
 }
 
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 .animate-fade-in-up {
   animation: fadeInUp 0.8s ease-out;
 }
 
 .animate-slide-in-left {
   animation: slideInFromLeft 0.6s ease-out;
+}
+
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+  will-change: transform;
+  transition: none;
+}
+
+.animate-scroll:hover {
+  animation-play-state: paused !important;
+}
+
+@keyframes scrollReverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-scroll-reverse {
+  animation: scrollReverse 30s linear infinite;
+  will-change: transform;
+  transition: none;
+}
+
+.animate-scroll-reverse:hover {
+  animation-play-state: paused !important;
 }
