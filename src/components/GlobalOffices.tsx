@@ -3,9 +3,11 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { MapPin, Phone, Clock } from 'lucide-react';
 
 const GlobalOffices: React.FC = () => {
+  const { t } = useLanguage();
   const offices = [
     {
       location: 'Macau',
@@ -74,11 +76,10 @@ const GlobalOffices: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl lg:text-5xl font-bold text-neo-charcoal mb-6">
-            Global <span className="text-neo-teal">Presence</span>
+            {t('global.title')}
           </h2>
           <p className="text-xl text-neo-slate max-w-3xl mx-auto">
-            With offices across Asia-Pacific and the United States, we provide localized expertise 
-            and international standards to clients worldwide.
+            {t('global.subtitle')}
           </p>
         </motion.div>
 

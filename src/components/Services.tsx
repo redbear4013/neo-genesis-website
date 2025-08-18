@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { 
   Building2, 
   ClipboardCheck, 
@@ -12,42 +13,44 @@ import {
 } from 'lucide-react';
 
 const Services: React.FC = () => {
+  const { t } = useLanguage();
+  
   const services = [
     {
       icon: Building2,
-      title: 'Structural Consultancy Services',
-      description: 'Expert structural engineering consultation for projects of all scales, ensuring safety and compliance with international standards.',
-      features: ['Structural Analysis', 'Foundation Design', 'Seismic Assessment']
+      title: t('services.structural'),
+      description: t('services.structural.desc'),
+      features: [t('services.structural.list1'), t('services.structural.list2'), t('services.structural.list3')]
     },
     {
       icon: ClipboardCheck,
-      title: 'Structural Inspection and QA/QC',
-      description: 'Comprehensive quality assurance, quality control, and inspection services ensuring structural integrity and regulatory compliance.',
-      features: ['Construction Monitoring', 'Material Testing', 'Quality Control', 'Safety Inspections', 'Standards Compliance']
+      title: t('services.inspection'),
+      description: t('services.inspection.desc'),
+      features: [t('services.inspection.list1'), t('services.inspection.list2'), t('services.inspection.list3'), t('services.inspection.list4'), t('services.inspection.list5')]
     },
     {
       icon: HardHat,
-      title: 'Construction Management',
-      description: 'End-to-end project management services from planning to completion, ensuring timely and budget-conscious delivery.',
-      features: ['Project Planning', 'Resource Management', 'Timeline Coordination']
+      title: t('services.construction'),
+      description: t('services.construction.desc'),
+      features: [t('services.construction.list1'), t('services.construction.list2'), t('services.construction.list3')]
     },
     {
       icon: FileText,
-      title: 'Building Department Submission',
-      description: 'Professional handling of all regulatory submissions and approvals across multiple jurisdictions.',
-      features: ['Permit Applications', 'Regulatory Compliance', 'Documentation Preparation']
+      title: t('services.permits'),
+      description: t('services.permits.desc'),
+      features: [t('services.permits.list1'), t('services.permits.list2'), t('services.permits.list3')]
     },
     {
       icon: Box,
-      title: 'BIM Services',
-      description: 'Advanced Building Information Modeling technology for superior project visualization and coordination.',
-      features: ['3D Modeling', 'Clash Detection', 'Project Visualization']
+      title: t('services.bim'),
+      description: t('services.bim.desc'),
+      features: [t('services.bim.list1'), t('services.bim.list2'), t('services.bim.list3')]
     },
     {
       icon: Calendar,
-      title: 'Exhibition & Trade Show Construction',
-      description: 'Specialized expertise in large-scale exhibition and entertainment venue construction and modifications.',
-      features: ['Event Structures', 'Temporary Installations', 'Trade Show Design']
+      title: t('services.exhibition'),
+      description: t('services.exhibition.desc'),
+      features: [t('services.exhibition.list1'), t('services.exhibition.list2'), t('services.exhibition.list3')]
     },
   ];
 
@@ -83,11 +86,10 @@ const Services: React.FC = () => {
           className="text-center mb-12"
         >
           <h2 className="text-4xl lg:text-5xl font-bold text-neo-dark-gray mb-6">
-            Our <span className="text-neo-teal">Services</span>
+            {t('services.home.title')}
           </h2>
           <p className="text-xl text-neo-gray max-w-3xl mx-auto">
-            We provide comprehensive engineering and construction services with expertise 
-            spanning multiple countries and project types, from casino developments to government buildings.
+            {t('services.home.subtitle')}
           </p>
         </motion.div>
 
@@ -129,7 +131,7 @@ const Services: React.FC = () => {
               
               <div className="mt-6 pt-6 border-t border-gray-100">
                 <button className="text-neo-teal font-semibold hover:text-neo-dark-teal transition-colors flex items-center group-hover:translate-x-2 transition-transform">
-                  Learn More
+                  {t('services.home.learnMore')}
                   <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
@@ -147,13 +149,12 @@ const Services: React.FC = () => {
           className="text-center mt-12"
         >
           <div className="bg-gradient-to-r from-neo-teal to-neo-dark-teal text-white rounded-xl p-8 max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold mb-4">Need a Custom Solution?</h3>
+            <h3 className="text-2xl font-bold mb-4">{t('services.home.customSolution')}</h3>
             <p className="text-lg opacity-95 mb-6">
-              Every project is unique. Let us work with you to develop a tailored approach 
-              that meets your specific requirements and exceeds your expectations.
+              {t('services.home.customDescription')}
             </p>
             <a href="/contact" className="inline-block bg-white text-neo-teal px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors">
-              Discuss Your Project
+              {t('services.home.discussProject')}
             </a>
           </div>
         </motion.div>

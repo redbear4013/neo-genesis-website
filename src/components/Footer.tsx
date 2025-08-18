@@ -8,7 +8,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 const Footer: React.FC = () => {
   const { t } = useLanguage();
   const office = {
-    address: 'Rua dos Curtidores. No. 29 EDF. YU WAH GARDEN. GF Unit L',
+    address: 'Rua dos Curtidores. No. 29E EDF. YU WAH GARDEN. GF Unit L',
     phone: '+853 66887906',
   };
 

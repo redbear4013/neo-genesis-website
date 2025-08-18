@@ -3,9 +3,11 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { Calendar, MapPin, ExternalLink, ChevronRight } from 'lucide-react';
 
 const ProjectPortfolio: React.FC = () => {
+  const { t } = useLanguage();
   const [activeCategory, setActiveCategory] = useState('casino');
 
   const categories = [
@@ -326,11 +328,10 @@ const ProjectPortfolio: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl lg:text-5xl font-bold text-neo-dark-gray mb-6">
-            Project <span className="text-neo-teal">Portfolio</span>
+            {t('projects.home.title')}
           </h2>
           <p className="text-xl text-neo-gray max-w-3xl mx-auto">
-            Showcasing our expertise across diverse project types, from luxury casino developments 
-            to government buildings and commercial renovations.
+            {t('projects.home.subtitle')}
           </p>
         </motion.div>
 

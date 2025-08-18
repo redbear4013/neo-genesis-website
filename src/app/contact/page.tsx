@@ -173,7 +173,7 @@ export default function Contact() {
               <h3 className="text-xl font-bold text-neo-dark-gray mb-4">{t('contact.office.main')}</h3>
               <div className="space-y-3 text-neo-gray">
                 <p><strong>{t('contact.office.address')}:</strong><br />
-                Rua dos Curtidores. No. 29 EDF. YU WAH GARDEN. GF Unit L<br />
+                Rua dos Curtidores. No. 29E EDF. YU WAH GARDEN. GF Unit L<br />
                 Macau</p>
                 <p><strong>{t('contact.office.phone')}:</strong> +853 66887906</p>
                 <p><strong>{t('contact.office.email')}:</strong> neo@neogenesisenc.com</p>
