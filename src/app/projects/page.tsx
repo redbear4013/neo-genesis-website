@@ -541,29 +541,31 @@ export default function Projects() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="bg-white rounded-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden shadow-2xl relative"
+              className="bg-white rounded-2xl max-w-6xl w-full h-[95vh] md:max-h-[90vh] overflow-hidden shadow-2xl relative"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close Button */}
               <button
                 onClick={() => setSelectedProject(null)}
-                className="absolute top-4 right-4 z-20 bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors shadow-lg"
+                className="absolute top-2 right-2 md:top-4 md:right-4 z-20 bg-white/90 backdrop-blur-sm p-1.5 md:p-2 rounded-full hover:bg-white transition-colors shadow-lg"
               >
-                <X className="h-5 w-5 text-gray-700" />
+                <X className="h-4 w-4 md:h-5 md:w-5 text-gray-700" />
               </button>
 
-              <div className="flex flex-col lg:flex-row h-full max-h-[90vh]">
-                {/* Left Side - Image Gallery */}
-                <div className="lg:w-2/3 relative bg-gray-100 flex flex-col">
+              <div className="flex flex-col lg:flex-row h-full">
+                {/* Mobile-first Layout: Image Gallery */}
+                <div className="w-full lg:w-2/3 relative bg-gray-100 flex flex-col h-[50vh] lg:h-full">
 
                   {/* Main Image */}
-                  <div className="relative flex-1 flex items-center justify-center min-h-0">
-                    <div className="relative w-full h-full max-h-[60vh]">
+                  <div className="relative flex-1 flex items-center justify-center p-2">
+                    <div className="relative w-full h-full min-h-[40vh] lg:max-h-[60vh]">
                       <Image
                         src={selectedProject.images[currentImageIndex]}
                         alt={selectedProject.title}
                         fill
                         className="object-contain"
+                        sizes="(max-width: 768px) 100vw, 66vw"
+                        priority
                       />
                     </div>
                     
@@ -574,94 +576,96 @@ export default function Projects() {
                           onClick={() => setCurrentImageIndex(prev => 
                             prev === 0 ? selectedProject.images.length - 1 : prev - 1
                           )}
-                          className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors"
+                          className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm p-1.5 md:p-2 rounded-full hover:bg-white transition-colors border-2 border-gray-300 hover:border-gray-400"
                         >
-                          <ChevronLeft className="h-5 w-5 text-gray-700" />
+                          <ChevronLeft className="h-4 w-4 md:h-5 md:w-5 text-gray-700" />
                         </button>
                         <button
                           onClick={() => setCurrentImageIndex(prev => 
                             prev === selectedProject.images.length - 1 ? 0 : prev + 1
                           )}
-                          className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors"
+                          className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm p-1.5 md:p-2 rounded-full hover:bg-white transition-colors border-2 border-gray-300 hover:border-gray-400"
                         >
-                          <ChevronRightIcon className="h-5 w-5 text-gray-700" />
+                          <ChevronRightIcon className="h-4 w-4 md:h-5 md:w-5 text-gray-700" />
                         </button>
                       </>
                     )}
                   </div>
 
-                  {/* Image Thumbnails */}
+                  {/* Image Thumbnails - Hidden on mobile to save space */}
                   {selectedProject.images.length > 1 && (
-                    <div className="p-4 flex space-x-2 overflow-x-auto">
-                      {selectedProject.images.map((image, index) => (
-                        <button
-                          key={index}
-                          onClick={() => setCurrentImageIndex(index)}
-                          className={`relative w-24 h-18 flex-shrink-0 rounded-lg overflow-hidden border-2 transition-colors ${
-                            index === currentImageIndex ? 'border-neo-teal' : 'border-gray-200'
-                          }`}
-                        >
-                          <Image
-                            src={image}
-                            alt={`${selectedProject.title} ${index + 1}`}
-                            fill
-                            className="object-cover"
-                          />
-                        </button>
-                      ))}
+                    <div className="hidden md:block p-4">
+                      <div className="flex space-x-2 overflow-x-auto">
+                        {selectedProject.images.map((image, index) => (
+                          <button
+                            key={index}
+                            onClick={() => setCurrentImageIndex(index)}
+                            className={`relative w-24 h-18 flex-shrink-0 rounded-lg overflow-hidden border-2 transition-colors ${
+                              index === currentImageIndex ? 'border-neo-teal' : 'border-gray-200'
+                            }`}
+                          >
+                            <Image
+                              src={image}
+                              alt={`${selectedProject.title} ${index + 1}`}
+                              fill
+                              className="object-cover"
+                            />
+                          </button>
+                        ))}
+                      </div>
                     </div>
                   )}
                 </div>
 
-                {/* Right Side - Project Information */}
-                <div className="lg:w-1/3 p-6 lg:p-8 overflow-y-auto">
-                  <div className="space-y-6">
-                    {/* Project Title & Year */}
+                {/* Project Information - Optimized for mobile */}
+                <div className="w-full lg:w-1/3 p-4 md:p-6 lg:p-8 overflow-y-auto max-h-[50vh] lg:max-h-none">
+                  <div className="space-y-4 md:space-y-6">
+                    {/* Project Title & Year - Smaller on mobile */}
                     <div>
                       <div className="flex items-center justify-between mb-2">
-                        <span className="bg-neo-teal/10 text-neo-teal text-sm px-3 py-1 rounded-full font-semibold">
+                        <span className="bg-neo-teal/10 text-neo-teal text-xs md:text-sm px-2 md:px-3 py-1 rounded-full font-semibold">
                           {selectedProject.year}
                         </span>
                       </div>
-                      <h2 className="text-2xl lg:text-3xl font-bold text-neo-dark-gray mb-2">
+                      <h2 className="text-lg md:text-2xl lg:text-3xl font-bold text-neo-dark-gray mb-2">
                         {selectedProject.title}
                       </h2>
                     </div>
 
-                    {/* Location & Type */}
-                    <div className="space-y-3">
+                    {/* Location & Type - Compact layout */}
+                    <div className="space-y-2 md:space-y-3">
                       <div className="flex items-center space-x-2 text-neo-gray">
-                        <MapPin className="h-5 w-5 text-neo-teal" />
-                        <span className="font-medium">{selectedProject.location}</span>
+                        <MapPin className="h-4 w-4 md:h-5 md:w-5 text-neo-teal flex-shrink-0" />
+                        <span className="font-medium text-sm md:text-base">{selectedProject.location}</span>
                       </div>
                       <div className="flex items-center space-x-2 text-neo-gray">
-                        <Calendar className="h-5 w-5 text-neo-teal" />
-                        <span className="font-medium">{selectedProject.type}</span>
+                        <Calendar className="h-4 w-4 md:h-5 md:w-5 text-neo-teal flex-shrink-0" />
+                        <span className="font-medium text-sm md:text-base line-clamp-2">{selectedProject.type}</span>
                       </div>
                     </div>
 
-                    {/* Description */}
+                    {/* Description - Shorter on mobile */}
                     <div>
-                      <h3 className="text-lg font-semibold text-neo-dark-gray mb-3">{t('projects.modal.overview')}</h3>
-                      <p className="text-neo-gray leading-relaxed">
+                      <h3 className="text-base md:text-lg font-semibold text-neo-dark-gray mb-2 md:mb-3">{t('projects.modal.overview')}</h3>
+                      <p className="text-neo-gray leading-relaxed text-sm md:text-base line-clamp-3 md:line-clamp-none">
                         {selectedProject.description}
                       </p>
                     </div>
 
-                    {/* Project Scope */}
+                    {/* Project Scope - Compact */}
                     <div>
-                      <h3 className="text-lg font-semibold text-neo-dark-gray mb-3">{t('projects.modal.scope')}</h3>
-                      <p className="text-neo-gray">{selectedProject.area}</p>
+                      <h3 className="text-base md:text-lg font-semibold text-neo-dark-gray mb-2 md:mb-3">{t('projects.modal.scope')}</h3>
+                      <p className="text-neo-gray text-sm md:text-base line-clamp-2 md:line-clamp-none">{selectedProject.area}</p>
                     </div>
 
-                    {/* Services */}
+                    {/* Services - Smaller tags on mobile */}
                     <div>
-                      <h3 className="text-lg font-semibold text-neo-dark-gray mb-3">{t('projects.modal.services')}</h3>
-                      <div className="flex flex-wrap gap-2">
+                      <h3 className="text-base md:text-lg font-semibold text-neo-dark-gray mb-2 md:mb-3">{t('projects.modal.services')}</h3>
+                      <div className="flex flex-wrap gap-1 md:gap-2">
                         {selectedProject.services.map((service, index) => (
                           <span
                             key={index}
-                            className="bg-neo-teal/10 text-neo-teal text-sm px-3 py-1 rounded-full"
+                            className="bg-neo-teal/10 text-neo-teal text-xs md:text-sm px-2 md:px-3 py-1 rounded-full"
                           >
                             {service}
                           </span>

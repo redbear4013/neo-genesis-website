@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Menu, X, Languages } from 'lucide-react';
 import NeoGenesisLogo from './ui/NeoGenesisLogo';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -10,6 +11,30 @@ const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
+  const router = useRouter();
+  const langDropdownRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (langDropdownRef.current && !langDropdownRef.current.contains(event.target as Node)) {
+        setIsLangOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const handleMobileNavClick = (href: string, name: string) => {
+    console.log('Navigating to:', href, name);
+    setIsMenuOpen(false);
+    setIsLangOpen(false);
+    // Use Next.js router for navigation
+    router.push(href);
+  };
 
   const navigation = [
     { name: t('nav.home'), href: '/' },
@@ -35,13 +60,21 @@ const Header: React.FC = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-8" style={{ marginLeft: '12pt' }}>
             <nav className="flex space-x-8">
-              {navigation.map((item) => (
+              {navigation.map((item, index) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-gray-300 hover:text-neo-teal transition-colors duration-200 font-medium"
+                  className="text-gray-300 hover:text-neo-teal transition-colors duration-200 font-medium relative z-10 px-2 py-1"
+                  style={{ 
+                    marginLeft: index === 0 ? '12pt' : '0',
+                    paddingLeft: index === 0 ? '12pt' : '8px'
+                  }}
+                  onClick={() => {
+                    console.log('Desktop nav clicked:', item.name, item.href);
+                    setIsLangOpen(false);
+                  }}
                 >
                   {item.name}
                 </Link>
@@ -49,7 +82,7 @@ const Header: React.FC = () => {
             </nav>
 
             {/* Language Toggle - Desktop */}
-            <div className="relative">
+            <div className="relative" ref={langDropdownRef}>
               <button
                 onClick={() => setIsLangOpen(!isLangOpen)}
                 className="flex items-center space-x-2 p-2 rounded-md text-gray-300 hover:text-neo-teal hover:bg-neo-gray transition-colors"
@@ -59,24 +92,34 @@ const Header: React.FC = () => {
               </button>
               
               {isLangOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+                <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-xl py-1 z-[60] border border-gray-200">
                   <button
-                    onClick={() => toggleLanguage('en')}
-                    className={`block w-full text-left px-4 py-2 text-sm transition-colors ${
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      toggleLanguage('en');
+                    }}
+                    className={`block w-full px-4 py-2 text-sm transition-colors ${
                       language === 'en' 
                         ? 'bg-neo-teal text-white' 
-                        : 'text-gray-700 hover:bg-gray-100'
+                        : 'text-gray-700 hover:bg-gray-200 hover:text-gray-900'
                     }`}
+                    style={{ textAlign: 'right' }}
                   >
                     {t('lang.english')}
                   </button>
                   <button
-                    onClick={() => toggleLanguage('zh')}
-                    className={`block w-full text-left px-4 py-2 text-sm transition-colors ${
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      toggleLanguage('zh');
+                    }}
+                    className={`block w-full px-4 py-2 text-sm transition-colors ${
                       language === 'zh' 
                         ? 'bg-neo-teal text-white' 
-                        : 'text-gray-700 hover:bg-gray-100'
+                        : 'text-gray-700 hover:bg-gray-200 hover:text-gray-900'
                     }`}
+                    style={{ textAlign: 'right' }}
                   >
                     {t('lang.chinese')}
                   </button>
@@ -97,24 +140,34 @@ const Header: React.FC = () => {
               </button>
               
               {isLangOpen && (
-                <div className="absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg py-1 z-50">
+                <div className="absolute right-0 mt-2 w-32 bg-white rounded-md shadow-xl py-1 z-[60] border border-gray-200">
                   <button
-                    onClick={() => toggleLanguage('en')}
-                    className={`block w-full text-left px-3 py-2 text-sm transition-colors ${
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      toggleLanguage('en');
+                    }}
+                    className={`block w-full px-3 py-2 text-sm transition-colors ${
                       language === 'en' 
                         ? 'bg-neo-teal text-white' 
-                        : 'text-gray-700 hover:bg-gray-100'
+                        : 'text-gray-700 hover:bg-gray-200 hover:text-gray-900'
                     }`}
+                    style={{ textAlign: 'right' }}
                   >
                     EN
                   </button>
                   <button
-                    onClick={() => toggleLanguage('zh')}
-                    className={`block w-full text-left px-3 py-2 text-sm transition-colors ${
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      toggleLanguage('zh');
+                    }}
+                    className={`block w-full px-3 py-2 text-sm transition-colors ${
                       language === 'zh' 
                         ? 'bg-neo-teal text-white' 
-                        : 'text-gray-700 hover:bg-gray-100'
+                        : 'text-gray-700 hover:bg-gray-200 hover:text-gray-900'
                     }`}
+                    style={{ textAlign: 'right' }}
                   >
                     中
                   </button>
@@ -141,14 +194,19 @@ const Header: React.FC = () => {
           <div className="lg:hidden py-4 border-t border-neo-gray">
             <nav className="flex flex-col space-y-4">
               {navigation.map((item) => (
-                <Link
+                <button
                   key={item.name}
-                  href={item.href}
-                  className="text-gray-300 hover:text-neo-teal transition-colors duration-200 font-medium py-2"
-                  onClick={() => setIsMenuOpen(false)}
+                  className="text-gray-300 hover:text-neo-teal transition-colors duration-200 font-medium py-2 block px-0 w-full"
+                  style={{ textAlign: 'right' }}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('Mobile nav clicked:', item.name, item.href);
+                    handleMobileNavClick(item.href, item.name);
+                  }}
                 >
                   {item.name}
-                </Link>
+                </button>
               ))}
             </nav>
           </div>

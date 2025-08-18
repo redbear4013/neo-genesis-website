@@ -32,8 +32,8 @@ const Hero: React.FC = () => {
       {/* Background Image - Mobile */}
       <div className="absolute inset-0 md:hidden">
         <Image 
-          src="/images/projects/bridge/bridge2.jpg"
-          alt="Neo Genesis Engineering Bridge Project"
+          src="/images/hero/IFC HK.jpg"
+          alt="Neo Genesis Engineering IFC Hong Kong Project"
           fill
           className="object-cover object-center"
           priority

@@ -7,36 +7,47 @@ export default function SimpleVideoHero() {
   
   return (
     <div className="relative h-screen overflow-hidden">
-      {/* Fallback Background Image */}
-      <div 
-        className="absolute top-0 left-0 w-full h-full bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url('/images/hero/Bridge1.jpg')` }}
-      ></div>
+      {/* Background Image for Mobile/Small Screens */}
+      <div className="absolute inset-0 md:hidden">
+        <div 
+          className="absolute top-0 left-0 w-full h-full bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url('/images/hero/011.jpg')` }}
+        ></div>
+      </div>
       
-      {/* Optimized Video Background */}
-      <video
-        className="absolute top-0 left-0 w-full h-full object-cover"
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="metadata"
-        poster="/images/hero/Bridge1.jpg"
-        onLoadStart={() => console.log('Video load started')}
-        onLoadedData={() => console.log('Video data loaded')}
-        onCanPlay={() => console.log('Video can play')}
-        onPlay={() => console.log('Video started playing')}
-        onError={(e) => console.error('Video error:', e)}
-        style={{
-          willChange: 'transform',
-          transform: 'translateZ(0)',
-          backfaceVisibility: 'hidden',
-          perspective: '1000px'
-        }}
-      >
-        <source src="/videos/macau-4k-drone.webm" type="video/webm" />
-        <source src="/videos/macau-4k-drone.mp4" type="video/mp4" />
-      </video>
+      {/* Video Background for Desktop/Large Screens */}
+      <div className="hidden md:block">
+        {/* Fallback Background Image */}
+        <div 
+          className="absolute top-0 left-0 w-full h-full bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url('/images/hero/Bridge1.jpg')` }}
+        ></div>
+        
+        {/* Optimized Video Background */}
+        <video
+          className="absolute top-0 left-0 w-full h-full object-cover"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          poster="/images/hero/Bridge1.jpg"
+          onLoadStart={() => console.log('Video load started')}
+          onLoadedData={() => console.log('Video data loaded')}
+          onCanPlay={() => console.log('Video can play')}
+          onPlay={() => console.log('Video started playing')}
+          onError={(e) => console.error('Video error:', e)}
+          style={{
+            willChange: 'transform',
+            transform: 'translateZ(0)',
+            backfaceVisibility: 'hidden',
+            perspective: '1000px'
+          }}
+        >
+          <source src="/videos/macau-4k-drone.webm" type="video/webm" />
+          <source src="/videos/macau-4k-drone.mp4" type="video/mp4" />
+        </video>
+      </div>
 
       {/* Light Overlay - Temporarily removed to test video visibility */}
       {/* <div className="absolute inset-0 bg-black bg-opacity-10"></div> */}
@@ -54,13 +65,6 @@ export default function SimpleVideoHero() {
             {t('about.company.name')}
           </p>
           
-          {/* Debug info */}
-          <div className="absolute top-4 left-4 text-xs bg-black bg-opacity-70 p-3 rounded text-left">
-            <div>Checking video files:</div>
-            <div>• /videos/macau-4k-drone.webm</div>
-            <div>• /videos/macau-4k-drone.mp4</div>
-            <div>Check console for video events</div>
-          </div>
           
           {/* Scroll indicator */}
           <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
