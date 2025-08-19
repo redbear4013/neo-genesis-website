@@ -51,43 +51,51 @@ export default function About() {
       <div className="bg-neo-off-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
 
-        {/* Company Overview */}
-        <div className="grid lg:grid-cols-2 gap-12 mb-16">
-          <div className="animate-slide-in-left">
-            <h2 className="text-3xl font-bold text-neo-dark-gray mb-6">{t('about.story.title')}</h2>
-            <p className="text-neo-gray mb-4">
+        {/* Our Story - Full Width */}
+        <div className="mb-16 animate-slide-in-left">
+          <h2 className="text-3xl font-bold text-neo-dark-gray mb-6 text-center">{t('about.story.title')}</h2>
+          <div className="bg-white p-8 rounded-lg shadow-lg">
+            <p className="text-neo-gray mb-4 text-lg leading-relaxed">
               {t('about.story.p1')}
             </p>
-            <p className="text-neo-gray mb-4">
+            <p className="text-neo-gray mb-4 text-lg leading-relaxed">
               {t('about.story.p2')}
             </p>
-            <p className="text-neo-gray">
+            <p className="text-neo-gray text-lg leading-relaxed">
               {t('about.story.p3')}
             </p>
           </div>
-          <div className="animate-fade-in-up">
-            <h2 className="text-3xl font-bold text-neo-dark-gray mb-6">{t('about.mission.title')}</h2>
-            <div className="bg-white p-8 rounded-lg shadow-lg mb-6">
-              <p className="text-neo-gray mb-4">
-                {t('about.mission.content')}
-              </p>
+        </div>
+
+        {/* Mission, Technical Excellence, Vision - One Row */}
+        <div className="mb-16 animate-fade-in-up">
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
+              <h3 className="text-xl font-bold text-neo-dark-gray mb-4 text-center">{t('about.mission.title')}</h3>
+              <div className="flex-1 flex items-center">
+                <p className="text-neo-gray leading-relaxed text-center">
+                  {t('about.mission.content')}
+                </p>
+              </div>
             </div>
             
-            <h2 className="text-3xl font-bold text-neo-dark-gray mb-6">{t('about.vision.title')}</h2>
-            <div className="bg-white p-8 rounded-lg shadow-lg mb-6">
-              <p className="text-neo-gray">
-                {t('about.vision.content')}
-              </p>
-            </div>
-            
-            <h2 className="text-3xl font-bold text-neo-dark-gray mb-6">{t('about.technical.title')}</h2>
-            <div className="bg-white p-8 rounded-lg shadow-lg">
-              <p className="text-neo-gray mb-4">
+            <div className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <h3 className="text-xl font-bold text-neo-dark-gray mb-4 text-center">{t('about.technical.title')}</h3>
+              <p className="text-neo-gray mb-4 leading-relaxed">
                 {t('about.technical.p1')}
               </p>
-              <p className="text-neo-gray">
+              <p className="text-neo-gray leading-relaxed">
                 {t('about.technical.p2')}
               </p>
+            </div>
+            
+            <div className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
+              <h3 className="text-xl font-bold text-neo-dark-gray mb-4 text-center">{t('about.vision.title')}</h3>
+              <div className="flex-1 flex items-center">
+                <p className="text-neo-gray leading-relaxed text-center">
+                  {t('about.vision.content')}
+                </p>
+              </div>
             </div>
           </div>
         </div>

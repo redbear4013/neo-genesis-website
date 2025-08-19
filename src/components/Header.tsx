@@ -74,20 +74,8 @@ const Header: React.FC = () => {
             </button>
           </div>
 
-          {/* Mobile menu and language buttons */}
-          <div className="lg:hidden flex items-center space-x-2">
-            {/* Language Toggle - Mobile */}
-            <button
-              onClick={() => toggleLanguage(language === 'en' ? 'zh' : 'en')}
-              className="flex items-center p-2 rounded-md text-gray-300 hover:text-white hover:bg-neo-gray transition-colors"
-            >
-              <span className="text-base mr-1">🌐</span>
-              <span className="text-sm font-medium">
-                {language === 'en' ? 'EN' : '中'}
-              </span>
-            </button>
-
-            {/* Mobile menu button */}
+          {/* Mobile menu button */}
+          <div className="lg:hidden">
             <button
               className="p-2 rounded-md text-gray-300 hover:text-white hover:bg-neo-gray transition-colors"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -120,6 +108,19 @@ const Header: React.FC = () => {
                   {item.name}
                 </button>
               ))}
+              
+              {/* Language Toggle - Mobile (inside dropdown) */}
+              <div className="pt-4 border-t border-neo-gray">
+                <button
+                  onClick={() => toggleLanguage(language === 'en' ? 'zh' : 'en')}
+                  className="flex items-center justify-end w-full p-2 rounded-md text-gray-300 hover:text-neo-teal hover:bg-neo-gray transition-colors"
+                >
+                  <span className="text-base mr-2">🌐</span>
+                  <span className="text-sm font-medium">
+                    {language === 'en' ? 'EN | 中文' : '中文 | EN'}
+                  </span>
+                </button>
+              </div>
             </nav>
           </div>
         )}

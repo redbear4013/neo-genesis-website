@@ -173,7 +173,7 @@ export default function Contact() {
               <h3 className="text-xl font-bold text-neo-dark-gray mb-4">{t('contact.office.main')}</h3>
               <div className="space-y-3 text-neo-gray">
                 <p><strong>{t('contact.office.address')}:</strong><br />
-                Rua dos Curtidores. No. 29E EDF. YU WAH GARDEN. GF Unit L<br />
+                {t('contact.office.macau.address')}<br />
                 Macau</p>
                 <p><strong>{t('contact.office.phone')}:</strong> +853 66887906</p>
                 <p><strong>{t('contact.office.email')}:</strong> neo@neogenesisenc.com</p>
@@ -185,12 +185,16 @@ export default function Contact() {
 
             {/* China Office */}
             <div className="bg-white rounded-lg shadow-lg p-8">
-              <h3 className="text-xl font-bold text-neo-dark-gray mb-4">China Office</h3>
+              <h3 className="text-xl font-bold text-neo-dark-gray mb-4">{t('contact.office.china.title')}</h3>
               <div className="space-y-3 text-neo-gray">
-                <p><strong>Address:</strong><br />
-                Hengqin MCC Headquarters Complex Hr. 27 Room 04<br />
-                Hengqin Zhuhai, China</p>
-                <p><strong>Phone:</strong> +86 18516377303</p>
+                <p><strong>{t('contact.office.address')}:</strong><br />
+                {t('contact.office.china.address').split('\n').map((line, index) => (
+                  <span key={index}>
+                    {line}
+                    {index < t('contact.office.china.address').split('\n').length - 1 && <br />}
+                  </span>
+                ))}</p>
+                <p><strong>{t('contact.office.phone')}:</strong> +86 18516377303</p>
                 <p><strong>Timezone:</strong> GMT+8</p>
               </div>
             </div>

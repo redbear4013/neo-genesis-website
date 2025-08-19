@@ -17,7 +17,7 @@ const NeoGenesisLogo: React.FC<NeoGenesisLogoProps> = ({ className = '', size = 
   return (
     <div className={`${sizeClasses[size]} ${className} relative`}>
       <Image
-        src="/images/COMPANY-LOGO-FINAL_wide.gif"
+        src="/images/COMPANY-LOGO-FINAL_web.png"
         alt="NEO GENESIS Logo"
         fill
         className="object-contain"

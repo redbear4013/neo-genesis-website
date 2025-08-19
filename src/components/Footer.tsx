@@ -8,17 +8,16 @@ import { useLanguage } from '@/contexts/LanguageContext';
 const Footer: React.FC = () => {
   const { t } = useLanguage();
   const office = {
-    address: 'Rua dos Curtidores. No. 29E EDF. YU WAH GARDEN. GF Unit L',
     phone: '+853 66887906',
   };
 
   const services = [
     t('services.structural'),
-    t('services.inspections'),
-    t('services.qaqc'),
+    t('services.inspection'),
     t('services.construction'),
     t('services.permits'),
     t('services.bim'),
+    t('services.exhibition'),
   ];
 
   return (
@@ -56,7 +55,7 @@ const Footer: React.FC = () => {
             <div className="space-y-2 text-sm">
               <div className="flex items-start space-x-2">
                 <MapPin className="h-4 w-4 text-neo-teal mt-0.5 flex-shrink-0" />
-                <p className="text-gray-300">{office.address}</p>
+                <p className="text-gray-300">{t('contact.office.macau.address')}</p>
               </div>
               <div className="flex items-center space-x-2">
                 <Phone className="h-4 w-4 text-neo-teal" />

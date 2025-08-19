@@ -173,6 +173,9 @@ const translations = {
     'contact.office.saturday': 'Saturday: 9:00 AM - 1:00 PM CST',
     'contact.visit.title': 'Visit Our Main Office',
     'contact.visit.description': 'Our main office is located in Macau at Rua dos Curtidores. No. 29E EDF. YU WAH GARDEN. GF Unit L',
+    'contact.office.macau.address': 'Rua dos Curtidores. No. 29E EDF. YU WAH GARDEN. GF Unit L',
+    'contact.office.china.title': 'China Office',
+    'contact.office.china.address': 'Hengqin MCC Headquarters Complex Hr. 27 Room 04',
     
     // BIM
     'bim.title': 'BIM Technology',
@@ -389,6 +392,9 @@ const translations = {
     'contact.office.saturday': '星期六：上午9:00 - 下午1:00',
     'contact.visit.title': '參觀我們的總辦公室',
     'contact.visit.description': '我們的總辦事處位於澳門涼水街29號E裕華花園大廈地下L座',
+    'contact.office.macau.address': '澳門涼水街29號E裕華花園大廈地下L座',
+    'contact.office.china.title': '珠海辦事處',
+    'contact.office.china.address': '横琴總部大廈2704\n珠海橫琴',
     
     // BIM
     'bim.title': 'BIM技術',
