@@ -55,7 +55,6 @@ const Header: React.FC = () => {
                   }}
                   onClick={() => {
                     console.log('Desktop nav clicked:', item.name, item.href);
-                    setIsLangOpen(false);
                   }}
                 >
                   {item.name}
