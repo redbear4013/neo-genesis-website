@@ -81,7 +81,7 @@ const Footer: React.FC = () => {
               <Link href="/terms" className="text-gray-400 hover:text-neo-teal text-sm transition-colors">
                 {t('footer.terms')}
               </Link>
-              <a href="mailto:info@neogenesis.com" className="text-gray-400 hover:text-neo-teal text-sm transition-colors flex items-center space-x-1">
+              <a href="mailto:neo@neogenesisenc.com" className="text-gray-400 hover:text-neo-teal text-sm transition-colors flex items-center space-x-1">
                 <Mail className="h-4 w-4" />
                 <span>{t('footer.contactUs')}</span>
               </a>

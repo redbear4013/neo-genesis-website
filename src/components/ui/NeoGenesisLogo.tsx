@@ -8,16 +8,16 @@ interface NeoGenesisLogoProps {
 
 const NeoGenesisLogo: React.FC<NeoGenesisLogoProps> = ({ className = '', size = 'md' }) => {
   const sizeClasses = {
-    sm: 'w-36 h-36',
-    md: 'w-54 h-54',
-    lg: 'w-72 h-72',
-    xl: 'w-90 h-90',
+    sm: 'w-40 h-12',
+    md: 'w-60 h-16',
+    lg: 'w-80 h-20',
+    xl: 'w-96 h-24',
   };
 
   return (
     <div className={`${sizeClasses[size]} ${className} relative`}>
       <Image
-        src="/images/COMPANY LOGO FINAL.png"
+        src="/images/COMPANY-LOGO-FINAL_wide.gif"
         alt="NEO GENESIS Logo"
         fill
         className="object-contain"
